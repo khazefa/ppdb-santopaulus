@@ -48,23 +48,21 @@ switch($getact){
                             $query = "SELECT p.*, c.category_name FROM products AS p "
                                     . "INNER JOIN products_category AS c ON p.category_id = c.category_id ";
                             $results = $database->get_results( $query );
-                            $no = 1;
                             foreach( $results as $row )
                             {
                                 $img_path = "../" . UPLOADS_DIR . "products" . DIRECTORY_SEPARATOR;
-                                $pict = !empty($row[product_pict]) ? "<img class='img-responsive' src='$img_path$row[product_pict]' width='100px'>" : "NO IMAGE";
-                                echo "<tr>";
-                                    echo "<td>
-                                            <a href='?page=$getpage&act=edit&key=$row[product_uniqid]'><i class='fa fa-edit'></i> Edit</a> | 
-                                            <a href='$act?page=$getpage&act=delete&key=$row[product_uniqid]'><i class='fa fa-trash'></i> Delete</a>
-                                        </td>";
-                                    echo "<td>$row[product_name]</td>";
-                                    echo "<td>$row[category_name]</td>";
-                                    echo "<td>Rp. ". format_IDR($row[product_price])."</td>";
-                                    echo "<td>$row[product_stock]</td>";
-                                    echo "<td class='text-center'>$pict</td>";
-                                echo "</tr>";
-                                $no++;
+                                $pict = !empty($row["product_pict"]) ? '<img class="img-responsive" src="'.$img_path.$row["product_pict"].'" width="100px">' : 'NO IMAGE';
+                                echo '<tr>';
+                                    echo '<td>
+                                            <a href="?page='.$getpage.'&act=edit&key='.$row["product_uniqid"].'"><i class="fa fa-edit"></i> Edit</a> | 
+                                            <a href="'.$act.'?page='.$getpage.'&act=delete&key='.$row["product_uniqid"].'"><i class="fa fa-trash"></i> Delete</a>
+                                        </td>';
+                                    echo '<td>'.$row["product_name"].'</td>';
+                                    echo '<td>'.$row["category_name"].'</td>';
+                                    echo '<td>'.format_IDR($row["product_price"]).'</td>';
+                                    echo '<td>'.$row["product_stock"].'</td>';
+                                    echo '<td class="text-center">$pict</td>';
+                                echo '</tr>';
                             }
                         ?>
                     </tbody>
@@ -95,7 +93,7 @@ case "add":
                                     $results = $database->get_results( $query );
                                     foreach( $results as $row )
                                     {
-                                        echo "<option value='$row[category_id]'>$row[category_name]</option>";
+                                        echo '<option value="'.$row["category_id"].'">'.$row["category_name"].'</option>';
                                     }
                                 ?>
                                 
@@ -159,7 +157,7 @@ if( $database->num_rows( $query ) > 0 )
     list( $id, $key, $category, $name, $desc, $price, $stock, $disc, $pict ) = $database->get_row( $query );
     
     $img_path = "../" . UPLOADS_DIR . "products" . DIRECTORY_SEPARATOR;
-    $img = !empty($pict) ? "<img class='img-responsive' src='$img_path$pict'>" : "NO IMAGE";
+    $img = !empty($pict) ? '<img class="img-responsive" src="'.$img_path.$pict.'">' : 'NO IMAGE';
 ?>
 <div class="row">
     <div class="col-lg-12">
@@ -180,9 +178,9 @@ if( $database->num_rows( $query ) > 0 )
                                     foreach( $results as $row )
                                     {
                                         if($row[category_id] == $category){
-                                            echo "<option value='$row[category_id]' selected>$row[category_name]</option>";
+                                            echo '<option value="'.$row["category_id"].'" selected>'.$row["category_name"].'</option>';
                                         }else{
-                                            echo "<option value='$row[category_id]'>$row[category_name]</option>";
+                                            echo '<option value="'.$row["category_id"].'">'.$row["category_name"].'</option>';
                                         }
                                         
                                     }

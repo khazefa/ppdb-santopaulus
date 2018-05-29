@@ -11,19 +11,21 @@
     }
 
     $page_files = array( 
-                    'list-soal'=>'modules/soal/v_list.php',
-                    'list-pages'=>'modules/pages/v_list.php',
-                    'list-agenda'=>'modules/agenda/v_list.php',
-                    'list-pengumuman'=>'modules/pengumuman/v_list.php',
-                    'ppdb-config'=>'modules/setup/v_form.php',
-                    'items-cat'=>'modules/products-cat/v_list.php',
-                    'customer-list'=>'modules/customers/v_list.php',
-                    'customer-orders'=>'modules/orders/v_list.php',
-                    'payment-list'=>'modules/payments/v_list.php',
-                    'bank-acc'=>'modules/bank-accounts/v_list.php',
-                    'user-list'=>'modules/users/v_list.php',
-                    'dashboard'=>'modules/dashboard.php'
-                );
+        'list-soal'=>'modules/soal/v_list.php',
+        'list-pages'=>'modules/pages/v_list.php',
+        'list-agenda'=>'modules/agenda/v_list.php',
+        'list-pengumuman'=>'modules/pengumuman/v_list.php',
+        'list-album'=>'modules/album/v_list.php',
+        'list-galeri'=>'modules/galeri/v_list.php',
+        'ppdb-config'=>'modules/setup/v_form.php',
+        'items-cat'=>'modules/products-cat/v_list.php',
+        'customer-list'=>'modules/customers/v_list.php',
+        'customer-orders'=>'modules/orders/v_list.php',
+        'payment-list'=>'modules/payments/v_list.php',
+        'bank-acc'=>'modules/bank-accounts/v_list.php',
+        'user-list'=>'modules/users/v_list.php',
+        'dashboard'=>'modules/dashboard.php'
+    );
 
     if (in_array($_GET['page'],array_keys($page_files))) {
         include $page_files[$_GET['page']];

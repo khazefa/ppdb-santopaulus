@@ -22,6 +22,18 @@
                         <li><a href="?page=list-soal"><em class="fa fa-book">&nbsp;</em> Bank Soal</a></li>
                         <li><a href="?page=list-agenda"><em class="fa fa-bookmark">&nbsp;</em> List Agenda</a></li>
                         <li><a href="?page=list-pengumuman"><em class="fa fa-bell">&nbsp;</em> List Pengumuman</a></li>
+			<li class="parent "><a data-toggle="collapse" href="#sub-item-1">
+                            <em class="fa fa-image">&nbsp;</em> Galeri <span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="fa fa-plus"></em></span>
+                            </a>
+                            <ul class="children collapse" id="sub-item-1">
+                                <li><a class="" href="?page=list-galeri">
+                                        <span class="fa fa-arrow-right">&nbsp;</span> List Galeri
+                                </a></li>
+                                <li><a class="" href="?page=list-album">
+                                        <span class="fa fa-arrow-right">&nbsp;</span> Galeri Album
+                                </a></li>
+                            </ul>
+			</li>
                         <li><a href="?page=user-list"><em class="fa fa-user-md">&nbsp;</em> User List</a></li>
                         <li><a href="?page=ppdb-config"><em class="fa fa-gear">&nbsp;</em> Pengaturan PPDB</a></li>
                         <li><a href="?page=list-pages"><em class="fa fa-sitemap">&nbsp;</em> Konten Website</a></li>

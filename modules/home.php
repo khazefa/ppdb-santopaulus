@@ -22,6 +22,19 @@
     <!-- Start intro Area -->
     <section class="pt-100" id="intro">
         <div class="container">
+            <!--check for registration event date-->
+            <?php
+                $query = "SELECT 1 FROM ppdb_setup WHERE CURDATE() BETWEEN setup_date_pre and setup_date_post ";
+                if( $database->num_rows( $query ) > 0 )
+                {
+                    echo '<div class="alert alert-warning alert-dismissible" role="alert">';
+                        echo '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>';
+                        echo 'Pendaftaran sekolah telah dibuka!, silahkan mengklik tombol ';
+                        echo '<a href="?page=pendaftaran" class="btn btn-warning">Daftar</a> berikut untuk melakukan proses pendaftaran online.';
+                    echo '</div>';
+                }
+            ?>
+            
             <div class="row align-items-center countdown-wrap no-gutters">
                 <div class="col-lg-12">
                     <h1>Welcome to our website!</h1>

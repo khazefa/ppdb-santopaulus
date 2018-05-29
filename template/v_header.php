@@ -59,7 +59,7 @@
               <li><a href="?page=static&q=tentang-kami">Tentang Kami</a></li>
               <li class="menu-has-children"><a href="">Pendaftaran</a>
                 <ul>
-                  <li><a href="#">Syarat Pendaftaran</a></li>
+                  <li><a href="?page=static&q=syarat-pendaftaran">Syarat Pendaftaran</a></li>
                   <li><a href="#">Formulir Pendaftaran</a></li>
                 </ul>
               </li>

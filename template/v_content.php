@@ -21,8 +21,7 @@
             'profil-akun'=>'modules/customers/page_enroll.php',
             'do_update_profile'=>'modules/customers/page_enroll.php',
             'do_update_password'=>'modules/customers/page_enroll.php',
-            'konfirmasi-pembayaran'=>'modules/customers/page_enroll.php',
-            'do_save_payment'=>'modules/customers/page_enroll.php',
+            'gallery'=>'modules/gallery/page_gallery.php',
             'home'=>'modules/home.php'
         );
     }else{
@@ -34,8 +33,7 @@
             'profil-akun'=>'modules/customers/page_profile.php',
             'do_update_profile'=>'modules/customers/do_profile.php',
             'do_update_password'=>'modules/customers/do_password.php',
-            'konfirmasi-pembayaran'=>'modules/payment/page_payment.php',
-            'do_save_payment'=>'modules/payment/do_payment.php',
+            'gallery'=>'modules/gallery/page_gallery.php',
             'home'=>'modules/home.php'
         );
     }

@@ -63,7 +63,7 @@
                   <li><a href="#">Formulir Pendaftaran</a></li>
                 </ul>
               </li>
-              <li><a href="#">Galeri</a></li>
+              <li><a href="?page=gallery">Galeri</a></li>
               <!--
               <li class="menu-has-children"><a href="">List</a>
                 <ul>

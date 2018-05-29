@@ -5,7 +5,7 @@ $baseurl = "http://".$_SERVER['HTTP_HOST'].str_replace(basename($_SERVER['SCRIPT
 define( 'DB_HOST', 'localhost' ); // set database host
 define( 'DB_USER', 'root' ); // set database user
 define( 'DB_PASS', 'secret' ); // set database password
-define( 'DB_NAME', 'dba_ppdb_smp' ); // set database name
+define( 'DB_NAME', 'db_ppdb_santop' ); // set database name
 define( 'SEND_ERRORS_TO', 'mymaildumpp@gmail.com' ); //set email notification email address
 define( 'DISPLAY_DEBUG', true ); //display db errors?
 
@@ -17,9 +17,10 @@ define('UPLOADS_DIR','uploads/');
 define('PAGE_LIMIT',10);
 
 /** MAIL INFO **/
-define('INFO_EMAIL','info@domain.com');
+define('INFO_EMAIL','contact@santopaulus.sch.id');
 
 /** WEB INFO **/
 define('WEB_DESC','web application to complete final exam task');
-define('WEB_TITLE','School Registration Online System');
+define('WEB_KEYWORDS','web, skripsi, ta, tugas akhir, skripsi, D3, S1');
+define('WEB_TITLE','Sekolah Katolik Santo Paulus');
 ?>

@@ -1,4 +1,4 @@
 # Disable Directory Browsing
 Options All -Indexes
 
-DirectoryIndex index.html index.php
+DirectoryIndex index.php index.html

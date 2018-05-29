@@ -49,26 +49,24 @@
                 </div>
             </div>						
             <div class="row">
-                <div class="col-lg-8 col-md-8">
-                    <a href="assets/img/g1.jpg" class="img-gal">
-                        <img class="img-fluid single-gallery" src="assets/img/g1.jpg" alt="">
-                    </a>	
-                </div>
-                <div class="col-lg-4 col-md-4">
-                    <a href="assets/img/g2.jpg" class="img-gal">
-                        <img class="img-fluid single-gallery" src="assets/img/g2.jpg" alt="">
-                    </a>	
-                </div>						
-                <div class="col-lg-6 col-md-6">
-                    <a href="assets/img/g3.jpg" class="img-gal">
-                        <img class="img-fluid single-gallery" src="assets/img/g3.jpg" alt="">
-                    </a>	
-                </div>
-                <div class="col-lg-6 col-md-6">
-                    <a href="assets/img/g4.jpg" class="img-gal">
-                        <img class="img-fluid single-gallery" src="assets/img/g4.jpg" alt="">
-                    </a>	
-                </div>		
+                <?php
+                    $img_path = UPLOADS_DIR . "images" . DIRECTORY_SEPARATOR;
+
+                    $query = "SELECT * FROM galeri_foto ORDER BY RAND() LIMIT 4";
+                    $results = $database->get_results( $query );
+                    $no = 1;
+                    foreach( $results as $row )
+                    {
+                        $img_path = UPLOADS_DIR . "images" . DIRECTORY_SEPARATOR;
+                        $pict = !empty($row["galeri_pict"]) ? '<img class="img-fluid single-gallery" src="'.$img_path.$row["galeri_pict"].'" alt="'.$row["galeri_title"].'">' 
+                                : '<img class="img-fluid single-gallery" src="http://placehold.it/900x350">';
+                        echo '<div class="col-lg-6 col-md-6">';
+                            echo '<a href="'.$img_path.$row["galeri_pict"].'" class="img-gal">';
+                            echo $pict;
+                            echo '</a>';
+                        echo '</div>';
+                    }
+                ?>	
             </div>
         </div>	
     </section>

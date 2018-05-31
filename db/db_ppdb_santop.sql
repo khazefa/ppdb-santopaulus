@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 29, 2018 at 09:59 AM
+-- Generation Time: May 31, 2018 at 06:04 AM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.1.15
 
@@ -51,6 +51,27 @@ INSERT INTO `agenda` (`ag_id`, `ag_tgl_posting`, `ag_tgl_mulai`, `ag_tgl_selesai
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `album_foto`
+--
+
+CREATE TABLE `album_foto` (
+  `album_id` int(5) NOT NULL,
+  `album_title` varchar(100) COLLATE latin1_general_ci NOT NULL,
+  `album_slug` varchar(100) COLLATE latin1_general_ci NOT NULL,
+  `album_desc` text COLLATE latin1_general_ci NOT NULL,
+  `album_pict` varchar(100) COLLATE latin1_general_ci NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+
+--
+-- Dumping data for table `album_foto`
+--
+
+INSERT INTO `album_foto` (`album_id`, `album_title`, `album_slug`, `album_desc`, `album_pict`) VALUES
+(1, 'Arsip Sekolah', 'arsip-sekolah', '<p>Arsip Sekolah<br></p>', 'album_833458pict_1.jpg');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `bank_soal`
 --
 
@@ -93,6 +114,31 @@ CREATE TABLE `calon_siswa` (
   `cs_email` varchar(100) NOT NULL,
   `cs_status` enum('acc','nacc') NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `galeri_foto`
+--
+
+CREATE TABLE `galeri_foto` (
+  `galeri_id` int(5) NOT NULL,
+  `album_id` int(5) NOT NULL,
+  `galeri_title` varchar(100) COLLATE latin1_general_ci NOT NULL,
+  `galeri_slug` varchar(100) COLLATE latin1_general_ci NOT NULL,
+  `galeri_desc` text COLLATE latin1_general_ci NOT NULL,
+  `galeri_pict` varchar(100) COLLATE latin1_general_ci NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+
+--
+-- Dumping data for table `galeri_foto`
+--
+
+INSERT INTO `galeri_foto` (`galeri_id`, `album_id`, `galeri_title`, `galeri_slug`, `galeri_desc`, `galeri_pict`) VALUES
+(1, 1, 'Kegiatan Upacara', 'kegiatan-upacara', '<p>Kegiatan Upacara<br></p>', 'gal_231004g3.jpg'),
+(2, 1, 'Ekskul Musik', 'ekskul-musik', '<p>Ekskul Musik<br></p>', 'gal_799939g1.jpg'),
+(3, 1, 'Olahraga Bersepeda', 'olahraga-bersepeda', '<p>Olahraga Bersepeda<br></p>', 'gal_531195g2.jpg'),
+(4, 1, 'Seminar Pendidikan', 'seminar-pendidikan', '<p>Seminar Pendidikan<br></p>', 'gal_724033g4.jpg');
 
 -- --------------------------------------------------------
 
@@ -160,7 +206,8 @@ CREATE TABLE `site_pages` (
 --
 
 INSERT INTO `site_pages` (`pg_id`, `pg_title`, `pg_slug`, `pg_content`, `pg_publish`) VALUES
-(1, 'visi dan misi', 'visi-dan-misi', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'Y');
+(1, 'tentang kami', 'tentang-kami', '<p style=\"margin: 0px 0px 15px; padding: 0px; text-align: justify; color: rgb(0, 0, 0); font-family: &quot;Open Sans&quot;, Arial, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial;\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse volutpat enim massa, facilisis ultrices nisi tempus quis. Fusce quis turpis vehicula, congue sapien at, vulputate tortor. Donec vitae nibh quam. Maecenas dapibus sem eget rhoncus molestie. In venenatis vitae libero eget porta. Proin cursus quam quis dolor euismod sollicitudin. Fusce eget elementum sem. Praesent sit amet placerat ante. Phasellus facilisis ante ac leo congue tristique. Aenean sed tincidunt enim, quis mollis libero. Morbi porttitor, diam quis lobortis laoreet, neque nunc varius tellus, eu sagittis magna arcu et nisl.</p><p style=\"margin: 0px 0px 15px; padding: 0px; text-align: justify; color: rgb(0, 0, 0); font-family: &quot;Open Sans&quot;, Arial, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial;\">Vivamus urna dolor, tristique ut faucibus vitae, faucibus et ante. Pellentesque convallis varius erat sed placerat. Nulla luctus sed urna non vehicula. Integer lobortis et tortor quis tempus. Nunc fermentum orci iaculis mauris pretium, vitae bibendum mi convallis. Fusce ullamcorper, massa quis laoreet auctor, justo neque pharetra ex, at cursus quam nunc ut leo. Ut sit amet enim tincidunt, ultricies mauris in, blandit nibh. Nam interdum odio vehicula, molestie risus sit amet, elementum justo. In ac maximus mi, et pellentesque mauris. Maecenas in neque ut diam dictum consequat et eget arcu. Sed ac suscipit velit. Donec lobortis mauris sapien, at consectetur purus rhoncus imperdiet. Cras lorem lacus, lacinia ac elit id, ullamcorper molestie odio. Mauris non magna tempor, porta libero ac, accumsan dui. Aliquam ac semper justo.</p><p style=\"margin: 0px 0px 15px; padding: 0px; text-align: justify; color: rgb(0, 0, 0); font-family: &quot;Open Sans&quot;, Arial, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial;\">Sed pretium lorem consequat nulla venenatis, eu gravida dui sollicitudin. Quisque id feugiat orci. Donec commodo nibh quis finibus volutpat. Fusce sit amet orci pellentesque, scelerisque augue at, maximus enim. Aliquam malesuada ligula tortor, ut molestie risus tempus efficitur. Sed sit amet euismod velit. Nullam pulvinar rutrum dapibus. Cras porta orci nec risus efficitur, vitae eleifend nulla pulvinar.</p><p style=\"margin: 0px 0px 15px; padding: 0px; text-align: justify; color: rgb(0, 0, 0); font-family: &quot;Open Sans&quot;, Arial, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial;\">Phasellus mattis lacinia purus sed viverra. Maecenas quis nisl finibus, ultrices sapien facilisis, vulputate ante. Etiam non tristique magna. Nunc quis nulla sem. Vestibulum ut ante convallis arcu porta suscipit. Nulla ornare nec nisi vel hendrerit. Pellentesque vel ligula eleifend, pellentesque nisl non, imperdiet ante.</p>', 'Y'),
+(2, 'Syarat Pendaftaran', 'syarat-pendaftaran', '<p>Harap membawa dokumen-dokumen sebagai berikut:</p><ol style=\"margin: 0px; padding: 0px 0px 10px; color: rgb(85, 85, 85); font-family: &quot;Lucida Grande&quot;, Tahoma, Verdana, Helvetica, sans-serif; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial;\"><li style=\"margin: 0px; padding: 0px 0px 0px 20px; list-style-position: inside;\">Fotokopi Akta Kelahiran (1 lembar)</li><li style=\"margin: 0px; padding: 0px 0px 0px 20px; list-style-position: inside;\">Fotokopi Kartu Keluarga (1 lembar)</li><li style=\"margin: 0px; padding: 0px 0px 0px 20px; list-style-position: inside;\">Fotokopi surat baptis bagi yang beragama Katolik (1 lembar)</li><li style=\"margin: 0px; padding: 0px 0px 0px 20px; list-style-position: inside;\">Membuat surat pernyataan di atas kertas segel</li><li style=\"margin: 0px; padding: 0px 0px 0px 20px; list-style-position: inside;\">Pas foto hitam putih ukuran 3 x 4 cm (1 lembar)</li><li style=\"margin: 0px; padding: 0px 0px 0px 20px; list-style-position: inside;\">Fotokopi Ijazah dan Surat Tanda Lulus yang dilegalisir (masing-masing 1 lembar, menyusul) untuk SMP</li><li style=\"margin: 0px; padding: 0px 0px 0px 20px; list-style-position: inside;\">Fotokopi Rapor kelas V Semester 1, 2 dan Rapor kelas VI Semester I masing-masing 1 lembar, untuk SMP</li></ol>', 'Y');
 
 -- --------------------------------------------------------
 
@@ -216,6 +263,12 @@ ALTER TABLE `agenda`
   ADD PRIMARY KEY (`ag_id`);
 
 --
+-- Indexes for table `album_foto`
+--
+ALTER TABLE `album_foto`
+  ADD PRIMARY KEY (`album_id`);
+
+--
 -- Indexes for table `bank_soal`
 --
 ALTER TABLE `bank_soal`
@@ -227,6 +280,12 @@ ALTER TABLE `bank_soal`
 ALTER TABLE `calon_siswa`
   ADD PRIMARY KEY (`cs_id`),
   ADD UNIQUE KEY `cs_nisn` (`cs_nisn`);
+
+--
+-- Indexes for table `galeri_foto`
+--
+ALTER TABLE `galeri_foto`
+  ADD PRIMARY KEY (`galeri_id`);
 
 --
 -- Indexes for table `ppdb_setup`
@@ -275,6 +334,12 @@ ALTER TABLE `agenda`
   MODIFY `ag_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `album_foto`
+--
+ALTER TABLE `album_foto`
+  MODIFY `album_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `bank_soal`
 --
 ALTER TABLE `bank_soal`
@@ -285,6 +350,12 @@ ALTER TABLE `bank_soal`
 --
 ALTER TABLE `calon_siswa`
   MODIFY `cs_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `galeri_foto`
+--
+ALTER TABLE `galeri_foto`
+  MODIFY `galeri_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `ppdb_setup`
@@ -302,7 +373,7 @@ ALTER TABLE `seleksi_penerimaan`
 -- AUTO_INCREMENT for table `site_pages`
 --
 ALTER TABLE `site_pages`
-  MODIFY `pg_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `pg_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `users`

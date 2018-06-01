@@ -6,6 +6,7 @@
         list( $fullname, $email ) = $database->get_row( $query );
     }
     $pagetitle = "Request Formulir Pendaftaran";
+    $getpage = htmlspecialchars($_GET["page"], ENT_QUOTES, 'UTF-8');
 ?>
 <section class="banner-area relative">	
     <div class="overlay overlay-bg"></div>
@@ -24,26 +25,111 @@
 <section class="section-gap">
 <div class="container">
     <div class="row">
-        <div class="col-md-8 col-md-offset-4">
+        <div class="col-md-12">
             <h2 class="text-uppercase"><?php echo ucfirst($pagetitle);?></h2>
-            <p class="lead">Daftar untuk mengikuti proses pendaftaran sekolah</p>
+            <p class="lead">Harap isi formulir berikut dengan lengkap dan benar, sesuai dengan formulir pendaftaran yang akan diisi berikutnya.</p>
             <hr>
-            <form role="form" method="POST" action="?page=do_pra_registrasi" class="form-area contact-form">
-              <div class="form-group">
-                <label for="rname">Nama Lengkap</label>
-                <input name="rname" id="rname" type="text" class="form-control">
-              </div>
-              <div class="form-group">
-                <label for="remail">Email</label>
-                <input name="remail" id="remail" type="text" class="form-control">
-              </div>
-              <div class="form-group">
-                <label for="rpassword">Password</label>
-                <input name="rpassword" id="rpassword" type="password" class="form-control">
-              </div>
-              <div class="text-center">
-                <button type="submit" class="btn btn-info"><i class="fa fa-user-md"></i> Daftar</button>
-              </div>
+            <form role="form" method="POST" action="?page=do_registrasi" class="form-area contact-form">
+            <input type="hidden" name="fid" value="<?php echo $key;?>" readonly>
+            <input type="hidden" name="furl" value="<?php echo $getpage;?>" readonly>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Nama Lengkap</label>
+                    <div class="col-sm-6">
+                        <input name="fname" id="fname" type="text" class="form-control" value="<?php echo $fullname;?>" required="required">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Jenis Kelamin</label>
+                    <div class="col-sm-2">
+                        <select name="fjkel" class="form-control" required="required">
+                            <option value="">Jenis Kelamin</option>
+                            <option value="L">Laki-Laki</option>
+                            <option value="P">Perempuan</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">NISN</label>
+                    <div class="col-sm-3">
+                        <input name="fnisn" id="fnisn" type="text" class="form-control" placeholder="1234567890" required="required">
+                    </div>
+                    <label class="col-sm-0 col-form-label">NIS</label>
+                    <div class="col-sm-4">
+                        <input name="fnis" id="fnis" type="text" class="form-control" placeholder="123456789012" required="required">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Tempat, Tgl Lahir</label>
+                    <div class="col-sm-4">
+                        <input name="ftempat" id="ftempat" type="text" class="form-control" placeholder="Tempat Lahir" required="required">
+                    </div>
+                    <label class="col-sm-0 col-form-label">,</label>
+                    <div class="col-sm-3">
+                        <input name="ftgl" id="ftgl" type="date" class="form-control" required="required" pattern="dd/mm/yyyy">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Agama</label>
+                    <div class="col-sm-2">
+                        <select name="fagama" class="form-control" required="required">
+                            <option value="">Agama</option>
+                            <option value="Katholik">Katholik</option>
+                            <option value="Kristen">Kristen</option>
+                            <option value="Islam">Islam</option>
+                            <option value="Hindu">Hindu</option>
+                            <option value="Budha">Budha</option>
+                            <option value="Lainnya">Lainnya</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Alamat</label>
+                    <div class="col-sm-8">
+                        <textarea name="faddress" id="faddress" class="form-control" placeholder="Alamat Lengkap"></textarea>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">No. Telepon / Hp</label>
+                    <div class="col-sm-3">
+                        <input name="fphone" id="fphone" type="text" class="form-control" placeholder="No. Telepon / Hp">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Nama Ayah</label>
+                    <div class="col-sm-6">
+                        <input name="fnama_ayah" id="fnama_ayah" type="text" class="form-control" placeholder="Nama Ayah" required="required">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Nama Ibu</label>
+                    <div class="col-sm-6">
+                        <input name="fnama_ibu" id="fnama_ibu" type="text" class="form-control" placeholder="Nama Ibu" required="required">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Nama Wali</label>
+                    <div class="col-sm-6">
+                        <input name="fnama_wali" id="fnama_wali" type="text" class="form-control" placeholder="Nama Wali">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Asal Sekolah</label>
+                    <div class="col-sm-6">
+                        <input name="fasal_sekolah" id="fasal_sekolah" type="text" class="form-control" placeholder="Asal Sekolah" required="required">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Email</label>
+                    <div class="col-sm-6">
+                        <input name="femail" id="femail" type="email" class="form-control" value="<?php echo $email;?>" readonly="readonly">
+                        <small>alamat email tidak dapat diganti</small>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-8 text-right">
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Simpan</button>
+                    </div>
+                </div>
             </form>
         </div>
     </div>

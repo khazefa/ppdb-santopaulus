@@ -57,10 +57,10 @@
             <ul class="nav-menu">
               <li class="menu-active"><a href="<?php echo $baseurl;?>">Beranda</a></li>
               <li><a href="?page=static&q=tentang-kami">Tentang Kami</a></li>
-              <li class="menu-has-children"><a href="">Pendaftaran</a>
+              <li class="menu-has-children"><a href="#">Pendaftaran</a>
                 <ul>
                   <li><a href="?page=static&q=syarat-pendaftaran">Syarat Pendaftaran</a></li>
-                  <li><a href="#">Formulir Pendaftaran</a></li>
+                  <li><a href="?page=form-pendaftaran">Formulir Pendaftaran</a></li>
                 </ul>
               </li>
               <li><a href="?page=gallery">Galeri</a></li>

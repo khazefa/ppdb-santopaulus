@@ -15,31 +15,39 @@
             'static'=>'modules/pages/page_content.php',
             'kontak-kami'=>'modules/contact/vform.php',
             'do_contact'=>'modules/contact/do_vform.php',
-            'enroll'=>'modules/customers/page_enroll.php',
-            'do_registrasi'=>'modules/customers/do_register.php',
+            'enroll'=>'modules/registrants/page_enroll.php',
+            'do_pra_registrasi'=>'modules/registrants/do_pre_register.php',
             'do_auth'=>'digi_auth.php',
-            'profil-akun'=>'modules/customers/page_enroll.php',
-            'do_update_profile'=>'modules/customers/page_enroll.php',
-            'do_update_password'=>'modules/customers/page_enroll.php',
+            'form-pendaftaran'=>'modules/registrants/page_enroll.php',
+            'profil-akun'=>'modules/registrants/page_enroll.php',
+            'do_update_profile'=>'modules/registrants/page_enroll.php',
+            'do_update_password'=>'modules/registrants/page_enroll.php',
             'gallery'=>'modules/gallery/page_gallery.php',
-            'home'=>'modules/home.php'
+            'home'=>'modules/home.php',
+            'error_404'=>'modules/errors/error_404.php'
         );
     }else{
         $page_files = array( 
             'static'=>'modules/pages/page_content.php',
             'kontak-kami'=>'modules/contact/vform.php',
             'do_contact'=>'modules/contact/do_vform.php',
-            'enroll'=>'modules/customers/page_enroll.php',
-            'profil-akun'=>'modules/customers/page_profile.php',
-            'do_update_profile'=>'modules/customers/do_profile.php',
-            'do_update_password'=>'modules/customers/do_password.php',
+            'enroll'=>'modules/registrants/page_enroll.php',
+            'form-pendaftaran'=>'modules/registrants/page_register.php',
+            'profil-akun'=>'modules/registrants/page_profile.php',
+            'do_update_profile'=>'modules/registrants/do_profile.php',
+            'do_update_password'=>'modules/registrants/do_password.php',
             'gallery'=>'modules/gallery/page_gallery.php',
-            'home'=>'modules/home.php'
+            'home'=>'modules/home.php',
+            'error_404'=>'modules/errors/error_404.php'
         );
     }
 
     if (in_array($_GET['page'],array_keys($page_files))) {
-        include $page_files[$_GET['page']];
+        if (file_exists($page_files[$_GET['page']])) {
+            include $page_files[$_GET['page']];
+        }else{
+            include $page_files['error_404'];
+        }
     } else {
         include $page_files['home'];
     }

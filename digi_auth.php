@@ -29,15 +29,24 @@ if (!ctype_alnum($pass)){
         $_SESSION['vcName']	= $uname;
         $_SESSION['vcMail']	= $umail;
         
+        $query_c = "SELECT cs_nisn FROM calon_siswa WHERE cs_email='$email'";
+        if( $database->num_rows( $query_c ) > 0 )
+        {
+            list( $ukey ) = $database->get_row( $query_c );
+            $_SESSION['vcUid']	= $ukey;
+        }else{
+            $_SESSION['vcUid'] = "";
+        }
+        
         $url = $baseurl;
         echo "<script type='text/javascript'>window.location.href = '".$url."';</script>";
         exit();
     }
     else
     {
-        header('HTTP/1.1 403 Forbidden.', TRUE, 403);
-        echo 'Your username or password mismatch! <a href="javascript:history.back()">Back</a>';
-        exit(1); // EXIT_ERROR
+        $url = $baseurl."?page=error_401";
+        echo "<script type='text/javascript'>window.location.href = '".$url."';</script>";
+        exit();
     }
 }
 ?>

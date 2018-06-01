@@ -1,12 +1,25 @@
 <?php
-    $key = htmlspecialchars($_SESSION['vcUser'], ENT_QUOTES, 'UTF-8');
-    $query = "SELECT user_fullname, user_email FROM users WHERE user_keyname = '$key' ";
-    if( $database->num_rows( $query ) > 0 )
-    {
-        list( $fullname, $email ) = $database->get_row( $query );
-    }
-    $pagetitle = "Request Formulir Pendaftaran";
     $getpage = htmlspecialchars($_GET["page"], ENT_QUOTES, 'UTF-8');
+    
+if (empty($_SESSION['isSession'])){
+    $url = $baseurl.'?page=enroll';
+    echo "<script type='text/javascript'>alert('Harap login terlebih dahulu!');window.location.href = '".$url."';</script>";
+    exit();
+}else{
+    $sessID = $_SESSION['vcUid'];
+    if(!empty($sessID)){
+        $url = $baseurl.'?page=upload-berkas';
+        echo "<script type='text/javascript'>window.location.href = '".$url."';</script>";
+        exit();
+    }else{
+        $pagetitle = "Request Formulir Pendaftaran";
+        $key = htmlspecialchars($_SESSION['vcUser'], ENT_QUOTES, 'UTF-8');
+        $query = "SELECT user_fullname, user_email FROM users WHERE user_keyname = '$key' ";
+        if( $database->num_rows( $query ) > 0 )
+        {
+            list( $fullname, $email ) = $database->get_row( $query );
+        }
+    }
 ?>
 <section class="banner-area relative">	
     <div class="overlay overlay-bg"></div>
@@ -21,7 +34,6 @@
         </div>
     </div>
 </section>
-
 <section class="section-gap">
 <div class="container">
     <div class="row">
@@ -135,3 +147,6 @@
     </div>
 </div>
 </section>
+<?php
+}
+?>

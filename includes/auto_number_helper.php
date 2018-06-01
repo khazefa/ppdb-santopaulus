@@ -1,6 +1,6 @@
 <?php
 function member_id($param='M') {
-    $dataMax = mysqli_fetch_assoc(mysqli_query("SELECT SUBSTR(MAX(id_member),-4) AS Mid FROM member"));
+    $dataMax = mysqli_fetch_assoc(mysqli_query("SELECT SUBSTR(MAX(cs_id),-4) AS Mid FROM calon_siswa"));
     if($dataMax['Mid']=='') { // bila data kosong
         $Daftar = $param."0001";
     }else {
@@ -14,18 +14,18 @@ function member_id($param='M') {
     return $Daftar;
 }
 		
-function order_id($param='F') {
-    $dataMax = mysqli_fetch_assoc(mysqli_query("SELECT SUBSTR(MAX(order_id),-4) AS key FROM orders"));
+function register_id($param='R') {
+    $dataMax = mysqli_fetch_assoc(mysqli_query("SELECT SUBSTR(MAX(reg_id),-3) AS key FROM registrasi"));
     if($dataMax['key']=='') { // bila data kosong
-        $Order = $param.date("m").date("d")."0001";
+        $Output = $param.date("y").date("m")."001";
     }else {
         $MaksOrder = $dataMax['Oid'];
         $MaksOrder++;
-        if($MaksOrder < 10){ $Order = $param.date("m").date("d")."000".$MaksOrder;} // nilai kurang dari 10
-        else if($MaksOrder < 100){ $Order = $param.date("m").date("d")."00".$MaksOrder;} // nilai kurang dari 100
-        else if($MaksOrder < 1000){ $Order = $param.date("m").date("d")."0".$MaksOrder;} // nilai kurang dari 1000
-        else {$Order = $MaksOrder;} // lebih dari 1000
+        if($MaksOrder < 10){ $Output = $param.date("y").date("m")."00".$MaksOrder;} // nilai kurang dari 10
+        else if($MaksOrder < 10){ $Output = $param.date("y").date("m")."0".$MaksOrder;} // nilai kurang dari 10
+        else if($MaksOrder < 100){ $Output = $param.date("y").date("m").$MaksOrder;} // nilai kurang dari 100
+        else {$Output = $MaksOrder;} // lebih dari 100
     }
-    return $Order;
+    return $Output;
 }
 ?>

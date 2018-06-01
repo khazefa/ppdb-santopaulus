@@ -20,12 +20,15 @@
             'do_auth'=>'digi_auth.php',
             'form-pendaftaran'=>'modules/registrants/page_enroll.php',
             'do_registrasi'=>'modules/registrants/page_enroll.php',
+            'download-formulir'=>'modules/registrants/page_enroll.php',
+            'do_formulir'=>'modules/registrants/page_enroll.php',
             'profil-akun'=>'modules/registrants/page_enroll.php',
             'do_update_profile'=>'modules/registrants/page_enroll.php',
             'do_update_password'=>'modules/registrants/page_enroll.php',
             'gallery'=>'modules/gallery/page_gallery.php',
             'home'=>'modules/home.php',
-            'error_404'=>'modules/errors/error_404.php'
+            'error_404'=>'modules/errors/error_404.php',
+            'error_401'=>'modules/errors/error_401.php'
         );
     }else{
         $page_files = array( 
@@ -35,6 +38,8 @@
             'enroll'=>'modules/registrants/page_enroll.php',
             'form-pendaftaran'=>'modules/registrants/page_register.php',
             'do_registrasi'=>'modules/registrants/do_register.php',
+            'download-formulir'=>'modules/registrants/page_formulir.php',
+            'do_formulir'=>'modules/registrants/do_formulir.php',
             'profil-akun'=>'modules/registrants/page_profile.php',
             'do_update_profile'=>'modules/registrants/do_profile.php',
             'do_update_password'=>'modules/registrants/do_password.php',

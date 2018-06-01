@@ -18,7 +18,7 @@ if (!ctype_alnum($pass)){
     $database = DB::getInstance();
 
     $query = "SELECT user_keyname, user_fullname, user_email FROM users WHERE user_keyname='$email' "
-            . "AND user_keypass='$pass' AND level_id <> 1";
+            . "AND user_keypass='$pass' AND role_id NOT IN (1,2)";
     if( $database->num_rows( $query ) > 0 )
     {
         list( $ukey, $uname, $umail ) = $database->get_row( $query );
@@ -28,13 +28,6 @@ if (!ctype_alnum($pass)){
         $_SESSION['vcUser']	= $ukey;
         $_SESSION['vcName']	= $uname;
         $_SESSION['vcMail']	= $umail;
-        
-        $query_c = "SELECT customer_uniqid FROM customers WHERE customer_email='$email'";
-        if( $database->num_rows( $query_c ) > 0 )
-        {
-            list( $ukey ) = $database->get_row( $query_c );
-            $_SESSION['vcUid']	= $ukey;
-        }
         
         $url = $baseurl;
         echo "<script type='text/javascript'>window.location.href = '".$url."';</script>";

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.9
+-- version 4.8.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: May 31, 2018 at 06:04 AM
--- Server version: 10.1.31-MariaDB
--- PHP Version: 7.1.15
+-- Host: localhost:3306
+-- Generation Time: Jun 02, 2018 at 03:50 AM
+-- Server version: 5.7.19
+-- PHP Version: 7.2.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -93,27 +93,48 @@ INSERT INTO `bank_soal` (`bs_id`, `bs_pertanyaan`, `bs_opsi_jawaban`, `bs_jawaba
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `berkas_docs`
+--
+
+CREATE TABLE `berkas_docs` (
+  `berkas_id` int(10) NOT NULL,
+  `cs_nisn` varchar(10) NOT NULL,
+  `berkas_file` varchar(100) NOT NULL,
+  `berkas_status` enum('verified','unverified') NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `calon_siswa`
 --
 
 CREATE TABLE `calon_siswa` (
   `cs_id` int(11) NOT NULL,
   `cs_nisn` varchar(10) NOT NULL,
-  `cs_nama` varchar(100) NOT NULL,
-  `cs_nama_panggilan` varchar(50) NOT NULL,
+  `cs_nis` varchar(12) NOT NULL,
+  `cs_nama_lengkap` varchar(100) NOT NULL,
   `cs_tmpt_lahir` varchar(100) NOT NULL,
   `cs_tgl_lahir` date NOT NULL,
   `cs_jkel` enum('L','P') NOT NULL,
   `cs_agama` varchar(35) NOT NULL,
-  `cs_tlp` varchar(36) NOT NULL,
-  `cs_alamat` text NOT NULL,
+  `cs_no_tlp` varchar(36) NOT NULL,
+  `cs_alamat_lengkap` text NOT NULL,
   `cs_nama_ayah` varchar(100) NOT NULL,
   `cs_nama_ibu` varchar(100) NOT NULL,
-  `cs_tlp_ortu` varchar(36) NOT NULL,
-  `cs_nilai_un` double NOT NULL,
+  `cs_nama_wali` varchar(100) NOT NULL,
+  `cs_asal_sekolah` varchar(100) NOT NULL,
   `cs_email` varchar(100) NOT NULL,
-  `cs_status` enum('acc','nacc') NOT NULL
+  `berkas_id` int(10) NOT NULL DEFAULT '0',
+  `cs_status` enum('uncompleted','notpass_test','pass_test') NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `calon_siswa`
+--
+
+INSERT INTO `calon_siswa` (`cs_id`, `cs_nisn`, `cs_nis`, `cs_nama_lengkap`, `cs_tmpt_lahir`, `cs_tgl_lahir`, `cs_jkel`, `cs_agama`, `cs_no_tlp`, `cs_alamat_lengkap`, `cs_nama_ayah`, `cs_nama_ibu`, `cs_nama_wali`, `cs_asal_sekolah`, `cs_email`, `berkas_id`, `cs_status`) VALUES
+(1, '1234567890', '123456789012', 'Roni Siahaan', 'Jakarta', '2006-05-05', 'L', 'Katholik', '081345676755', 'Jl. KH Agus Salim 16, Sabang, Menteng Jakarta Pusat', 'Toni Jefferson', 'Shinta Bashor', '', 'SDN Tebu Besar', 'ronisiaha@gmail.com', 0, 'uncompleted');
 
 -- --------------------------------------------------------
 
@@ -170,9 +191,15 @@ CREATE TABLE `registrasi` (
   `reg_id` varchar(8) NOT NULL,
   `reg_date` date NOT NULL,
   `cs_nisn` varchar(10) NOT NULL,
-  `reg_key` varchar(64) NOT NULL,
-  `reg_status` enum('pending','complete') NOT NULL
+  `reg_status` enum('process','pass','notpass') NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `registrasi`
+--
+
+INSERT INTO `registrasi` (`reg_id`, `reg_date`, `cs_nisn`, `reg_status`) VALUES
+('R1806001', '2018-06-02', '1234567890', 'process');
 
 -- --------------------------------------------------------
 
@@ -231,7 +258,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`user_id`, `user_keyname`, `user_keypass`, `user_fullname`, `user_email`, `role_id`, `user_status`) VALUES
 (1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'Administrator', 'admin@domain.com', 1, 1),
-(2, 'johndoe', 'johndoe', 'John Doe', 'johndoe@gmail.com', 2, 1);
+(3, 'ronisiaha@gmail.com', 'd78b154c99fe7f06ebc02ebd63d1c87c', 'Roni Siahaan', 'ronisiaha@gmail.com', 3, 1);
 
 -- --------------------------------------------------------
 
@@ -250,7 +277,8 @@ CREATE TABLE `users_role` (
 
 INSERT INTO `users_role` (`role_id`, `role_name`) VALUES
 (1, 'administrator'),
-(2, 'staff');
+(2, 'staff'),
+(3, 'registrants');
 
 --
 -- Indexes for dumped tables
@@ -273,6 +301,12 @@ ALTER TABLE `album_foto`
 --
 ALTER TABLE `bank_soal`
   ADD PRIMARY KEY (`bs_id`);
+
+--
+-- Indexes for table `berkas_docs`
+--
+ALTER TABLE `berkas_docs`
+  ADD PRIMARY KEY (`berkas_id`);
 
 --
 -- Indexes for table `calon_siswa`
@@ -346,10 +380,16 @@ ALTER TABLE `bank_soal`
   MODIFY `bs_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `berkas_docs`
+--
+ALTER TABLE `berkas_docs`
+  MODIFY `berkas_id` int(10) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `calon_siswa`
 --
 ALTER TABLE `calon_siswa`
-  MODIFY `cs_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `cs_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `galeri_foto`
@@ -379,13 +419,13 @@ ALTER TABLE `site_pages`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users_role`
 --
 ALTER TABLE `users_role`
-  MODIFY `role_id` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `role_id` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

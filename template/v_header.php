@@ -86,7 +86,9 @@
               ?>
               <li class="menu-has-children"><a href="#"><?php echo filterOutput($_SESSION['vcName']);?></a>
                 <ul>
-                  <li><a href="?page=form-pendaftaran">Formulir Pendaftaran</a></li>
+                    <li><a href="?page=form-pendaftaran">Formulir Pendaftaran</a></li>
+                    <li><div class="dropdown-divider"></div></li>
+                    <li><a href="logout.php">Log Out</a></li>
                 </ul>
               </li>
               <?php

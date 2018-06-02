@@ -52,12 +52,13 @@ if (empty($_SESSION['isSession'])){
             <input type="hidden" name="furl" value="<?php echo $getpage;?>" readonly>
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Upload Berkas Pendaftaran</label>
-                    <div class="col-sm-6">
+                    <div class="col-sm-4">
                         <input name="fupload" id="fupload" type="file" class="form-control" required="required">
+                        <small>Upload berkas pendaftaran yang telah anda isi dan discan, dan dikompresi dalam format .zip</small>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <div class="col-sm-8 text-right">
+                    <div class="col-sm-6 text-right">
                         <button type="submit" name="download" class="btn btn-primary"><i class="fa fa-save"></i> Upload</button>
                     </div>
                 </div>

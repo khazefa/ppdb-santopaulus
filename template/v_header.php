@@ -57,12 +57,20 @@
             <ul class="nav-menu">
               <li class="menu-active"><a href="<?php echo $baseurl;?>">Beranda</a></li>
               <li><a href="?page=static&q=tentang-kami">Tentang Kami</a></li>
+              <?php
+              if ($_SESSION['isSession']){
+                  
+              }else{
+              ?>
               <li class="menu-has-children"><a href="#">Pendaftaran</a>
                 <ul>
                   <li><a href="?page=static&q=syarat-pendaftaran">Syarat Pendaftaran</a></li>
                   <li><a href="?page=form-pendaftaran">Formulir Pendaftaran</a></li>
                 </ul>
               </li>
+              <?php
+              }
+              ?>
               <li><a href="?page=gallery">Galeri</a></li>
               <!--
               <li class="menu-has-children"><a href="">List</a>
@@ -73,6 +81,17 @@
               </li>	
               -->
               <li><a href="?page=kontak-kami">Kontak Kami</a></li>
+              <?php
+              if ($_SESSION['isSession']){
+              ?>
+              <li class="menu-has-children"><a href="#"><?php echo filterOutput($_SESSION['vcName']);?></a>
+                <ul>
+                  <li><a href="?page=form-pendaftaran">Formulir Pendaftaran</a></li>
+                </ul>
+              </li>
+              <?php
+              }
+              ?>
             </ul>
           </nav><!-- #nav-menu-container -->		    		
         </div>

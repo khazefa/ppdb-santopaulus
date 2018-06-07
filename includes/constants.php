@@ -22,5 +22,5 @@ define('INFO_EMAIL','contact@santopaulus.sch.id');
 /** WEB INFO **/
 define('WEB_DESC','web application to complete final exam task');
 define('WEB_KEYWORDS','web, skripsi, ta, tugas akhir, skripsi, D3, S1');
-define('WEB_TITLE','Sekolah Katolik Santo Paulus');
+define('WEB_TITLE','SMP Katolik Santo Paulus');
 ?>

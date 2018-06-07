@@ -86,7 +86,16 @@
               ?>
               <li class="menu-has-children"><a href="#"><?php echo filterOutput($_SESSION['vcName']);?></a>
                 <ul>
-                    <li><a href="?page=form-pendaftaran">Formulir Pendaftaran</a></li>
+                    <!--<li><a href="?page=form-pendaftaran">Formulir Pendaftaran</a></li>-->
+                    <?php
+                        $sessID = $_SESSION['vcUid'];
+                        if(!empty($sessID)){
+                            echo '<li><a href="?page=profil-akun">Profil Pendaftar</a></li>';
+                            echo '<li><a href="?page=upload-berkas">Upload Berkas</a></li>';
+                        }else{
+                            
+                        }
+                    ?>
                     <li><div class="dropdown-divider"></div></li>
                     <li><a href="logout.php">Log Out</a></li>
                 </ul>

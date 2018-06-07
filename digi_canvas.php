@@ -6,6 +6,7 @@ require("includes/global_helper.php");
 require("includes/common_helper.php");
 require("includes/auto_number_helper.php");
 require("includes/paging_builder.php");
+require('includes/fpdf_cellfit.php');
 
 include("template/v_header.php");
 //    include("template/v_nav.php");

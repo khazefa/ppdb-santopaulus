@@ -1,6 +1,4 @@
 <?php
-
-
 if (empty($_SESSION['isSession'])){
     $url = $baseurl.'?page=enroll';
     echo "<script type='text/javascript'>alert('Harap login terlebih dahulu!');window.location.href = '".$url."';</script>";

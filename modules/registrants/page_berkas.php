@@ -22,8 +22,8 @@ if (empty($_SESSION['isSession'])){
             $pagetitle = "Upload Berkas";
         }
     }else{
-        $url = $baseurl.'?page=form-pendaftaran';
-        echo "<script type='text/javascript'>alert('Terjadi kesalahan pada pendaftaran anda, harap ulangi pendaftaran kembali.');window.location.href = '".$url."';</script>";
+        $url = $baseurl;
+        echo "<script type='text/javascript'>alert('Terjadi kesalahan pada sistem.');window.location.href = '".$url."';</script>";
         exit();
     }
 ?>

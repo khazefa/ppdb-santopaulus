@@ -100,6 +100,45 @@ function uploadFile($file, $prefix, $destination){
 }
 
 /**
+ * Upload File
+ *
+ * Function for uploading media files, currently only supported for jpg, jpeg, gif, png
+ *
+ * @return	File Uploaded
+ */
+function uploadDoc($file, $prefix, $destination){
+    $uploadDirectory = ABSPATH . UPLOADS_DIR;
+
+    $errors = []; // Store all foreseen and unforseen errors here
+
+    $fileExtensions = ['zip','rar']; // Get all the file extensions
+
+    $fileName = $prefix.$file['name'];
+    $fileSize = $file['size'];
+    $fileTmpName  = $file['tmp_name'];
+    $fileType = $file['type'];
+    $fileExtension = strtolower(end(explode('.',$fileName)));
+    
+    $uploadPath = $uploadDirectory . $destination . DIRECTORY_SEPARATOR . basename($fileName);
+
+    if (! in_array($fileExtension,$fileExtensions)) {
+        $errors[] = "This file extension is not allowed. Please upload a ZIP or RAR file";
+    }
+
+    if ($fileSize > 20000000) {
+        $errors[] = "This file is more than 20MB. Sorry, it has to be less than or equal to 20MB";
+    }
+
+    if (empty($errors)) {
+        $didUpload = move_uploaded_file($fileTmpName, $uploadPath);
+    } else {
+        foreach ($errors as $error) {
+            echo $error . "These are the errors" . "\n";
+        }
+    }
+}
+
+/**
  * Upload Files
  *
  * Function for uploading media files, currently only supported for jpg, jpeg, gif, png

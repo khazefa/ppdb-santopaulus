@@ -1,8 +1,8 @@
 <?php
-$pagetitle = "Customer List";
-$act = "modules/customers/do_task.php";
+$pagetitle = "LIst Registrant";
+$act = "modules/calonsiswa/do_task.php";
 
-$getpage = "customer-list";
+$getpage = "list-pendaftar";
 $getact = htmlspecialchars($_GET["act"], ENT_QUOTES, 'UTF-8');
 ?>
 <div class="row">
@@ -36,27 +36,35 @@ switch($getact){
                     <thead>
                         <tr>
                             <th>Actions</th>
-                            <th>Name</th>
+                            <th>NISN</th>
+                            <th>NIS</th>
+                            <th>Nama Lengkap</th>
+                            <th>Jns Kelamin</th>
+                            <th>Agama</th>
                             <th>Email</th>
-                            <th>Phone</th>
-                            <th>City</th>
+                            <th>Status</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
-                            $query = "SELECT * FROM customers";
+                            $query = "SELECT * FROM calon_siswa";
                             $results = $database->get_results( $query );
                             $no = 1;
                             foreach( $results as $row )
                             {
+                                $gender = $row["cs_jkel"] == "L" ? "Laki-Laki" : "Perempuan";
+                                $status = strtoupper($row["cs_status"]);
                                 echo "<tr>";
                                     echo "<td>
-                                            <a href='?page=$getpage&act=info&key=$row[customer_uniqid]'><i class='fa fa-eye'></i> View</a>
+                                            <a href='?page=$getpage&act=info&key=$row[cs_nisn]'><i class='fa fa-eye'></i> View</a>
                                         </td>";
-                                    echo "<td>$row[customer_name]</td>";
-                                    echo "<td>$row[customer_email]</td>";
-                                    echo "<td>$row[customer_phone]</td>";
-                                    echo "<td>$row[customer_city]</td>";
+                                    echo "<td>$row[cs_nisn]</td>";
+                                    echo "<td>$row[cs_nis]</td>";
+                                    echo "<td>$row[cs_nama_lengkap]</td>";
+                                    echo "<td>$gender</td>";
+                                    echo "<td>$row[cs_agama]</td>";
+                                    echo "<td>$row[cs_email]</td>";
+                                    echo "<td>$status</td>";
                                 echo "</tr>";
                                 $no++;
                             }

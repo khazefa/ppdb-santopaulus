@@ -18,11 +18,7 @@
         'list-album'=>'modules/album/v_list.php',
         'list-galeri'=>'modules/galeri/v_list.php',
         'ppdb-config'=>'modules/setup/v_form.php',
-        'items-cat'=>'modules/products-cat/v_list.php',
-        'customer-list'=>'modules/customers/v_list.php',
-        'customer-orders'=>'modules/orders/v_list.php',
-        'payment-list'=>'modules/payments/v_list.php',
-        'bank-acc'=>'modules/bank-accounts/v_list.php',
+        'list-pendaftar'=>'modules/calonsiswa/v_list.php',
         'user-list'=>'modules/users/v_list.php',
         'dashboard'=>'modules/dashboard.php'
     );

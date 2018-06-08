@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jun 02, 2018 at 03:50 AM
+-- Generation Time: Jun 08, 2018 at 03:34 PM
 -- Server version: 5.7.19
--- PHP Version: 7.2.2
+-- PHP Version: 7.1.18
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -100,8 +100,15 @@ CREATE TABLE `berkas_docs` (
   `berkas_id` int(10) NOT NULL,
   `cs_nisn` varchar(10) NOT NULL,
   `berkas_file` varchar(100) NOT NULL,
-  `berkas_status` enum('verified','unverified') NOT NULL
+  `berkas_status` tinyint(4) NOT NULL COMMENT '1:not_verified,2:verified'
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `berkas_docs`
+--
+
+INSERT INTO `berkas_docs` (`berkas_id`, `cs_nisn`, `berkas_file`, `berkas_status`) VALUES
+(1, '1234567890', 'R1806001_berkas_pendaftaran.zip', 2);
 
 -- --------------------------------------------------------
 
@@ -125,16 +132,15 @@ CREATE TABLE `calon_siswa` (
   `cs_nama_wali` varchar(100) NOT NULL,
   `cs_asal_sekolah` varchar(100) NOT NULL,
   `cs_email` varchar(100) NOT NULL,
-  `berkas_id` int(10) NOT NULL DEFAULT '0',
-  `cs_status` enum('uncompleted','notpass_test','pass_test') NOT NULL
+  `berkas_id` int(10) NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `calon_siswa`
 --
 
-INSERT INTO `calon_siswa` (`cs_id`, `cs_nisn`, `cs_nis`, `cs_nama_lengkap`, `cs_tmpt_lahir`, `cs_tgl_lahir`, `cs_jkel`, `cs_agama`, `cs_no_tlp`, `cs_alamat_lengkap`, `cs_nama_ayah`, `cs_nama_ibu`, `cs_nama_wali`, `cs_asal_sekolah`, `cs_email`, `berkas_id`, `cs_status`) VALUES
-(1, '1234567890', '123456789012', 'Roni Siahaan', 'Jakarta', '2006-05-05', 'L', 'Katholik', '081345676755', 'Jl. KH Agus Salim 16, Sabang, Menteng Jakarta Pusat', 'Toni Jefferson', 'Shinta Bashor', '', 'SDN Tebu Besar', 'ronisiaha@gmail.com', 0, 'uncompleted');
+INSERT INTO `calon_siswa` (`cs_id`, `cs_nisn`, `cs_nis`, `cs_nama_lengkap`, `cs_tmpt_lahir`, `cs_tgl_lahir`, `cs_jkel`, `cs_agama`, `cs_no_tlp`, `cs_alamat_lengkap`, `cs_nama_ayah`, `cs_nama_ibu`, `cs_nama_wali`, `cs_asal_sekolah`, `cs_email`, `berkas_id`) VALUES
+(1, '1234567890', '123456789012', 'Roni Siahaan', 'Jakarta', '2006-05-05', 'L', 'Katholik', '081345676755', 'Jl. KH Agus Salim 16, Sabang, Menteng Jakarta Pusat', 'Toni Jefferson', 'Shinta Bashor', '', 'SDN Tebu Besar', 'ronisiaha@gmail.com', 0);
 
 -- --------------------------------------------------------
 
@@ -191,7 +197,7 @@ CREATE TABLE `registrasi` (
   `reg_id` varchar(8) NOT NULL,
   `reg_date` date NOT NULL,
   `cs_nisn` varchar(10) NOT NULL,
-  `reg_status` enum('process','pass','notpass') NOT NULL
+  `reg_status` tinyint(4) NOT NULL COMMENT '1:process,2:file_verified,3:pass,4:not_pass'
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
@@ -199,7 +205,7 @@ CREATE TABLE `registrasi` (
 --
 
 INSERT INTO `registrasi` (`reg_id`, `reg_date`, `cs_nisn`, `reg_status`) VALUES
-('R1806001', '2018-06-02', '1234567890', 'process');
+('R1806001', '2018-06-02', '1234567890', 1);
 
 -- --------------------------------------------------------
 
@@ -383,7 +389,7 @@ ALTER TABLE `bank_soal`
 -- AUTO_INCREMENT for table `berkas_docs`
 --
 ALTER TABLE `berkas_docs`
-  MODIFY `berkas_id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `berkas_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `calon_siswa`

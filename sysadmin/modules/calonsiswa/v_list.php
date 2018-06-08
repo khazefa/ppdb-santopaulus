@@ -104,15 +104,49 @@ if( $database->num_rows( $query ) > 0 )
             $notlp, $alamat, $ayah, $ibu, $wali, $sekolah, $email ) = $database->get_row( $query );
     $tgllahir = tgl_indo($tgl);
     $gender = $jkel == "L" ? "Laki-Laki" : "Perempuan";
+    
+    $qry_status = "SELECT reg_status FROM registrasi WHERE cs_nisn = '$nisn'";
+    if( $database->num_rows( $qry_status ) > 0 ){
+        list( $regstatus ) = $database->get_row( $qry_status );
+        if($regstatus == 3){
+            $pass = "selected";
+        }elseif($regstatus == 4){
+            $notpass = "selected";
+        }
+    }
+    
+    $qry_berkas = "SELECT berkas_file, berkas_status FROM berkas_docs WHERE cs_nisn = '$nisn'";
+    if( $database->num_rows( $qry_berkas ) > 0 ){
+        list( $files, $status ) = $database->get_row( $qry_berkas );
+        if($status == 1){
+            $zipname = "../" . UPLOADS_DIR . "confi_docs". DIRECTORY_SEPARATOR . $files;
+            $no_completed = "selected";
+        }else{
+            $zipname = "#";
+            $completed = "selected";
+        }
+    }
 ?>
 <div class="row">
     <div class="col-lg-12">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h5>Detail Info</h5>
+                <h5 class="pull-left">Detail Info</h5>
+                <div class="pull-right">
+                    <form role="form" class="form-horizontal" method="POST" action="<?php echo $act.'?page='.$getpage;?>&act=update_reg">
+                        <input type="hidden" name="fnisn" value="<?php echo $nisn;?>" readonly="readonly">
+                        <select name="fstatus_reg" id="fstatus_reg" class="form-control" onchange="this.form.submit()">
+                            <option value="0">Lulus / Tidak Lulus</option>
+                            <option value="1" <?php echo $notpass;?>>Tidak Lulus</option>
+                            <option value="2" <?php echo $pass;?>>Lulus</option>
+                        </select>
+                    </form>
+                </div>
+                <!--<h5>Detail Info</h5>-->
             </div>
             <div class="panel-body">
                 <form role="form" class="form-horizontal" method="POST" action="<?php echo $act.'?page='.$getpage;?>&act=update">
+                    <input type="hidden" name="fnisn" value="<?php echo $nisn;?>" readonly="readonly">
                     <div class="form-group">
                         <label class="col-sm-2">NISN</label>
                         <div class="col-sm-5">
@@ -191,10 +225,28 @@ if( $database->num_rows( $query ) > 0 )
                             <p>: <?php echo $email;?></p>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label class="col-sm-2">Berkas Pendaftaran</label>
+                        <div class="col-sm-3">
+                            <p>: <?php echo '<a href="'.$zipname.'" target="_blank">'.$files.'</a>';?></p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2">&nbsp;</label>
+                        <div class="col-sm-2">
+                            <select name="fstatus_berkas" id="fstatus_berkas" class="form-control" onchange="this.form.submit()">
+                                <option value="0">Status Berkas</option>
+                                <option value="1" <?php echo $no_completed;?>>Tidak Lengkap</option>
+                                <option value="2" <?php echo $completed;?>>Sudah Lengkap</option>
+                            </select>
+                        </div>
+                    </div>
                 </form>
             </div>
             <div class="panel-footer">
-                <button type="button" class="btn btn-default" onclick="window.history.go(-1); return false;">Back</button>
+                <div class="text-right">
+                    <button type="button" class="btn btn-default" onclick="window.history.go(-1); return false;">Back</button>
+                </div>
             </div>
         </div>
     </div>

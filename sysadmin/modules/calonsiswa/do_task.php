@@ -25,29 +25,53 @@ if(!isset($isLoggedIn) || $isLoggedIn != TRUE){
             'bank_acc_name' => $fname,
             'bank_acc_bank' => $fbank
         );
-        $add_query = $database->insert( 'bank_acc', $arrValue );
+        $add_query = $database->insert( 'berkas_docs', $arrValue );
         if( $add_query )
         {
             header('location:../../?page='.$getpage);
         }
     }
     // Update data
-    elseif ($getpage == "list-pendaftar" AND $getact == "update"){
-        $fid = isset($_POST["fid"]) ? filter_var($_POST['fid'], FILTER_SANITIZE_NUMBER_INT) : 0;
-        $fbank = isset($_POST["fbank"]) ? filter_var($_POST['fbank'], FILTER_SANITIZE_STRING) : null;
-        $fname = isset($_POST["fname"]) ? filter_var($_POST['fname'], FILTER_SANITIZE_STRING) : null;
-        $fno = isset($_POST["fno"]) ? filter_var($_POST['fno'], FILTER_SANITIZE_STRING) : null;
+    elseif ($getpage == "list-pendaftar" AND $getact == "update_reg"){
+        $fnisn = isset($_POST["fnisn"]) ? filter_var($_POST['fnisn'], FILTER_SANITIZE_STRING) : null;
+        $fstatus_reg = isset($_POST["fstatus_reg"]) ? filter_var($_POST['fstatus_reg'], FILTER_SANITIZE_NUMBER_INT) : 0;
         
-        $update = array(
-            'bank_acc_no' => $fno,
-            'bank_acc_name' => $fname,
-            'bank_acc_bank' => $fbank
-        );
+        if($fstatus_reg != 0){   
+            $update = array(
+                'reg_status' => $fstatus_reg
+            );
+            //Add the WHERE clauses
+            $where_clause = array(
+                'cs_nisn' => $fnisn
+            );
+            $updated = $database->update( 'registrasi', $update, $where_clause, 1 );
+            if( $updated )
+            {
+                header('location:../../?page='.$getpage);
+            }
+        }else{
+            header('location:../../?page='.$getpage);
+        }
+    }
+    // Update data
+    elseif ($getpage == "list-pendaftar" AND $getact == "update"){
+        $fnisn = isset($_POST["fnisn"]) ? filter_var($_POST['fnisn'], FILTER_SANITIZE_STRING) : null;
+        $fstatus_berkas = isset($_POST["fstatus_berkas"]) ? filter_var($_POST['fstatus_berkas'], FILTER_SANITIZE_NUMBER_INT) : 0;
+        
+        if($fstatus_berkas != 0){   
+            $update = array(
+                'berkas_status' => $fstatus_berkas
+            );
+        }else{
+            $update = array(
+                'berkas_status' => 1
+            );
+        }
         //Add the WHERE clauses
         $where_clause = array(
-            'bank_acc_id' => $fid
+            'cs_nisn' => $fnisn
         );
-        $updated = $database->update( 'bank_acc', $update, $where_clause, 1 );
+        $updated = $database->update( 'berkas_docs', $update, $where_clause, 1 );
         if( $updated )
         {
             header('location:../../?page='.$getpage);

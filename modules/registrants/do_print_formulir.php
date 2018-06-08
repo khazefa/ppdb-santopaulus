@@ -107,7 +107,7 @@ if (empty($_SESSION['isSession'])){
                 . "c.cs_tgl_lahir, c.cs_jkel, c.cs_agama, c.cs_no_tlp, c.cs_alamat_lengkap, "
                 . "c.cs_nama_ayah, c.cs_nama_ibu, c.cs_nama_wali, c.cs_asal_sekolah, c.cs_email "
                 . "FROM calon_siswa AS c INNER JOIN registrasi AS r ON c.cs_nisn = r.cs_nisn "
-                . "WHERE r.reg_id = '$fnoreg' AND c.cs_status = 'uncompleted'";
+                . "WHERE r.reg_id = '$fnoreg' AND r.reg_status = 1";
 
     if( $database->num_rows( $query ) > 0 )
     {
@@ -123,12 +123,12 @@ if (empty($_SESSION['isSession'])){
     $pdf->Cell(6,10,'                           : '.$regid,0,1, 'L');
 
     $pdf->setFont('Arial','B',11);
-    $pdf->Cell(6,0.5,'No NISN',0,0,'L');
+    $pdf->Cell(6,0.5,'NISN',0,0,'L');
     $pdf->setFont('Arial','',11);
     $pdf->Cell(6,0.5,'                           : '.$nisn,0,1, 'L');
 
     $pdf->setFont('Arial','B',11);
-    $pdf->Cell(6,10,'No NIS',0,0,'L');
+    $pdf->Cell(6,10,'NIS',0,0,'L');
     $pdf->setFont('Arial','',11);
     $pdf->Cell(6,10,'                           : '.$nis,0,1, 'L');
 

@@ -15,7 +15,7 @@ if(!isset($isLoggedIn) || $isLoggedIn != TRUE){
     $getact = htmlspecialchars($_GET["act"], ENT_QUOTES, 'UTF-8');
 
     // Save data
-    if ($getpage == "bank-acc" AND $getact == "save"){
+    if ($getpage == "list-pendaftar" AND $getact == "save"){
         $fbank = isset($_POST["fbank"]) ? filter_var($_POST['fbank'], FILTER_SANITIZE_STRING) : null;
         $fname = isset($_POST["fname"]) ? filter_var($_POST['fname'], FILTER_SANITIZE_STRING) : null;
         $fno = isset($_POST["fno"]) ? filter_var($_POST['fno'], FILTER_SANITIZE_STRING) : null;
@@ -32,7 +32,7 @@ if(!isset($isLoggedIn) || $isLoggedIn != TRUE){
         }
     }
     // Update data
-    elseif ($getpage == "bank-acc" AND $getact == "update"){
+    elseif ($getpage == "list-pendaftar" AND $getact == "update"){
         $fid = isset($_POST["fid"]) ? filter_var($_POST['fid'], FILTER_SANITIZE_NUMBER_INT) : 0;
         $fbank = isset($_POST["fbank"]) ? filter_var($_POST['fbank'], FILTER_SANITIZE_STRING) : null;
         $fname = isset($_POST["fname"]) ? filter_var($_POST['fname'], FILTER_SANITIZE_STRING) : null;

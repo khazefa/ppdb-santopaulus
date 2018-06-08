@@ -20,14 +20,14 @@ if (empty($_SESSION['isSession'])){
     if(empty($fupload['tmp_name'])){
         $arrValue = array(
             'cs_nisn' => $fnisn,
-            'berkas_status' => "unverified"
+            'berkas_status' => 1
         );
     }else{
         uploadDoc($fupload, $regid."_", "confi_docs");
         $arrValue = array(
             'cs_nisn' => $fnisn,
             'berkas_file' => $regid."_".$fupload['name'],
-            'berkas_status' => "unverified"
+            'berkas_status' => 1
         );
     }
 

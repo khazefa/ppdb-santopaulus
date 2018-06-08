@@ -53,15 +53,14 @@ if (empty($_SESSION['isSession'])){
             'cs_nama_ibu' => $fnama_ibu,
             'cs_nama_wali' => $fnama_wali,
             'cs_asal_sekolah' => $fasal_sekolah,
-            'cs_email' => $femail,
-            'cs_status' => "uncompleted"
+            'cs_email' => $femail
         );
         
         $arrValue_r = array(
             'reg_id' => $fregid,
             'reg_date' => date("Y-m-d"),
             'cs_nisn' => $fnisn,
-            'reg_status' => "process"
+            'reg_status' => 1
         );
         
 //        var_dump($arrValue);exit();

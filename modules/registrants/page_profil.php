@@ -14,7 +14,7 @@ if (empty($_SESSION['isSession'])){
                 . "c.cs_tgl_lahir, c.cs_jkel, c.cs_agama, c.cs_no_tlp, c.cs_alamat_lengkap, "
                 . "c.cs_nama_ayah, c.cs_nama_ibu, c.cs_nama_wali, c.cs_asal_sekolah, c.cs_email "
                 . "FROM calon_siswa AS c INNER JOIN registrasi AS r ON c.cs_nisn = r.cs_nisn "
-                . "WHERE c.cs_nisn = '$sessID' AND c.cs_status = 'uncompleted'";
+                . "WHERE c.cs_nisn = '$sessID' AND r.reg_status = 1";
         if( $database->num_rows( $query ) > 0 )
         {
             list( $regid, $nisn, $nis, $fullname, $tempat, $tgl, $jkel, $agama, 

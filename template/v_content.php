@@ -13,6 +13,7 @@
     if (empty($_SESSION['isSession'])){
         $page_files = array(
             'static'=>'modules/pages/page_content.php',
+            'pengumuman'=>'modules/pengumuman/page_pengumuman.php',
             'kontak-kami'=>'modules/contact/vform.php',
             'do_contact'=>'modules/contact/do_vform.php',
             'enroll'=>'modules/registrants/page_enroll.php',
@@ -36,6 +37,7 @@
     }else{
         $page_files = array( 
             'static'=>'modules/pages/page_content.php',
+            'pengumuman'=>'modules/pengumuman/page_pengumuman.php',
             'kontak-kami'=>'modules/contact/vform.php',
             'do_contact'=>'modules/contact/do_vform.php',
             'enroll'=>'modules/registrants/page_enroll.php',

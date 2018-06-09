@@ -1,8 +1,8 @@
 <?php
-$pagetitle = "Registrant";
-$act = "modules/calonsiswa/do_task.php";
+$pagetitle = "Seleksi Penerimaan";
+$act = "modules/seleksi/do_task.php";
 
-$getpage = "list-pendaftar";
+$getpage = "list-seleksi";
 $getact = htmlspecialchars($_GET["act"], ENT_QUOTES, 'UTF-8');
 ?>
 <div class="row">
@@ -37,49 +37,47 @@ switch($getact){
                         <tr>
                             <th>Actions</th>
                             <th>NISN</th>
-                            <th>NIS</th>
                             <th>Nama Lengkap</th>
-                            <th>Email</th>
-                            <th>Status</th>
+                            <th>Status Berkas</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
-                            $query = "SELECT c.*, r.reg_status FROM calon_siswa AS c "
-                                    . "INNER JOIN registrasi AS r ON r.cs_nisn = c.cs_nisn ";
+                            $query = "SELECT c.*, r.reg_status, b.berkas_status FROM calon_siswa AS c "
+                                    . "INNER JOIN registrasi AS r ON r.cs_nisn = c.cs_nisn "
+                                    . "LEFT JOIN berkas_docs AS b ON b.cs_nisn = c.cs_nisn ";
                             $results = $database->get_results( $query );
                             $no = 1;
                             foreach( $results as $row )
                             {
                                 $gender = $row["cs_jkel"] == "L" ? "Laki-Laki" : "Perempuan";
-                                $stat = (int)$row["reg_status"];
+                                $stat = (int)$row["berkas_status"];
                                 switch ($stat){
                                     case 1:
-                                        $status = strtoupper("proses");
+                                        $status = strtoupper("belum lengkap");
                                     break;
                                     case 2:
-                                        $status = strtoupper("berkas lengkap");
-                                    break;
-                                    case 3:
-                                        $status = strtoupper("lulus");
-                                    break;
-                                    case 4:
-                                        $status = strtoupper("tidak lulus");
+                                        $status = strtoupper("sudah lengkap");
                                     break;
                                     default:
-                                        $status = strtoupper("proses");
+                                        $status = strtoupper("belum lengkap");
                                     break;
                                 }
-                                echo "<tr>";
-                                    echo "<td>
-                                            <a href='?page=$getpage&act=info&key=$row[cs_nisn]'><i class='fa fa-eye'></i> View</a>
-                                        </td>";
-                                    echo "<td>$row[cs_nisn]</td>";
-                                    echo "<td>$row[cs_nis]</td>";
-                                    echo "<td>$row[cs_nama_lengkap]</td>";
-                                    echo "<td>$row[cs_email]</td>";
-                                    echo "<td>$status</td>";
-                                echo "</tr>";
+                                echo '<tr>';
+                                    echo '<td>
+                                            <form role="form" class="form-horizontal" method="POST" action="'.$act.'?page='.$getpage.'&act=update_reg">
+                                                <input type="hidden" name="fnisn" value="'.$row["cs_nisn"].'" readonly="readonly">
+                                                <select name="fstatus_reg" id="fstatus_reg" class="form-control" onchange="this.form.submit()">
+                                                    <option value="1">Hasil Seleksi</option>
+                                                    <option value="3">Lulus</option>
+                                                    <option value="4">Tidak Lulus</option>
+                                                </select>
+                                            </form>
+                                        </td>';
+                                    echo '<td><a href="?page='.$getpage.'&act=info&key='.$row["cs_nisn"].'">'.$row["cs_nisn"].'</a></td>';
+                                    echo '<td>'.$row["cs_nama_lengkap"].'</td>';
+                                    echo '<td>'.$status.'</td>';
+                                echo '</tr>';
                                 $no++;
                             }
                         ?>
@@ -134,7 +132,6 @@ if( $database->num_rows( $query ) > 0 )
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h5 class="pull-left">Detail Info</h5>
-                <!--
                 <div class="pull-right">
                     <form role="form" class="form-horizontal" method="POST" action="<?php echo $act.'?page='.$getpage;?>&act=update_reg">
                         <input type="hidden" name="fnisn" value="<?php echo $nisn;?>" readonly="readonly">
@@ -145,7 +142,7 @@ if( $database->num_rows( $query ) > 0 )
                         </select>
                     </form>
                 </div>
-                -->
+                <!--<h5>Detail Info</h5>-->
             </div>
             <div class="panel-body">
                 <form role="form" class="form-horizontal" method="POST" action="<?php echo $act.'?page='.$getpage;?>&act=update">

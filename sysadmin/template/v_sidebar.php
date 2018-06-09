@@ -19,7 +19,9 @@
 			<li><a href="<?php echo $baseurl; ?>"><em class="fa fa-dashboard">&nbsp;</em> Dashboard</a></li>
                         <li><a href="?page=list-pendaftar"><em class="fa fa-user-circle-o">&nbsp;</em> Calon Siswa</a></li>
                         <li><a href="?page=list-seleksi"><em class="fa fa-exchange">&nbsp;</em> Seleksi Penerimaan</a></li>
+                        <!--
                         <li><a href="?page=list-soal"><em class="fa fa-book">&nbsp;</em> Bank Soal</a></li>
+                        -->
                         <li><a href="?page=list-agenda"><em class="fa fa-bookmark">&nbsp;</em> List Agenda</a></li>
                         <li><a href="?page=list-pengumuman"><em class="fa fa-bell">&nbsp;</em> List Pengumuman</a></li>
 			<li class="parent "><a data-toggle="collapse" href="#sub-item-1">

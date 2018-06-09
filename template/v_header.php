@@ -14,7 +14,7 @@
     <!-- meta character set -->
     <meta charset="UTF-8">
     <!-- Site Title -->
-    <title>Sekolah Katolik Santo Paulus</title>
+    <title><?php echo WEB_TITLE;?></title>
 
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet"> 
     <!--
@@ -29,6 +29,10 @@
     <link rel="stylesheet" href="assets/css/owl.carousel.css">
     <link rel="stylesheet" href="assets/css/main.css">
     <link rel="stylesheet" href="assets/css/custom.css">
+    
+    <!-- DataTables -->
+    <link rel="stylesheet" type="text/css" href="assets/plugins/DataTables/datatables.min.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/plugins/DataTables/DataTables-1.10.16/css/dataTables.bootstrap.min.css"/>
 </head>
 <body>	
     <header id="header">
@@ -57,6 +61,7 @@
             <ul class="nav-menu">
               <li class="menu-active"><a href="<?php echo $baseurl;?>">Beranda</a></li>
               <li><a href="?page=static&q=tentang-kami">Tentang Kami</a></li>
+              <li><a href="?page=pengumuman">Pengumuman</a></li>
               <?php
               if ($_SESSION['isSession']){
                   

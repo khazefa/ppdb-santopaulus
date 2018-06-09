@@ -19,6 +19,7 @@
         'list-galeri'=>'modules/galeri/v_list.php',
         'ppdb-config'=>'modules/setup/v_form.php',
         'list-pendaftar'=>'modules/calonsiswa/v_list.php',
+        'list-seleksi'=>'modules/seleksi/v_list.php',
         'user-list'=>'modules/users/v_list.php',
         'dashboard'=>'modules/dashboard.php'
     );

@@ -45,6 +45,7 @@
                 todayBtn: "linked",
                 language: "id",
                 clearBtn: true,
+                autoclose: true,
                 todayHighlight: true
             });
 	});

@@ -70,7 +70,7 @@
               <li class="menu-has-children"><a href="#">Pendaftaran</a>
                 <ul>
                   <li><a href="?page=static&q=syarat-pendaftaran">Syarat Pendaftaran</a></li>
-                  <li><a href="?page=form-pendaftaran">Formulir Pendaftaran</a></li>
+                  <!--<li><a href="?page=form-pendaftaran">Formulir Pendaftaran</a></li>-->
                 </ul>
               </li>
               <?php
@@ -98,7 +98,7 @@
                             echo '<li><a href="?page=profil-akun">Profil Pendaftar</a></li>';
                             echo '<li><a href="?page=upload-berkas">Upload Berkas</a></li>';
                         }else{
-                            echo '<li><a href="?page=form-pendaftaran">Formulir Pendaftaran</a></li>';
+                            echo '<li><a href="?page=form-pendaftaran">Registrasi</a></li>';
                         }
                     ?>
                     <li><div class="dropdown-divider"></div></li>

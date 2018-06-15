@@ -24,14 +24,28 @@
         <div class="container">
             <!--check for registration event date-->
             <?php
-                $query = "SELECT 1 FROM ppdb_setup WHERE CURDATE() BETWEEN setup_date_pre and setup_date_post ";
+                $query = "SELECT setup_date_post FROM ppdb_setup WHERE CURDATE() BETWEEN setup_date_pre and setup_date_post ";
                 if( $database->num_rows( $query ) > 0 )
                 {
-                    echo '<div class="alert alert-warning alert-dismissible" role="alert">';
-                        echo '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>';
-                        echo 'Pendaftaran sekolah telah dibuka!, silahkan mengklik tombol ';
-                        echo '<a href="?page=pendaftaran" class="btn btn-warning">Daftar</a> berikut untuk melakukan proses pendaftaran online.';
+                    list( $datepost ) = $database->get_row( $query );
+                    $postdate = tgl_indo($datepost);
+                    echo '<div class="alert alert-success alert-dismissible" role="alert">';
+//                        echo '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>';
+                        echo 'Pendaftaran sekolah telah dibuka! silahkan melakukan ';
+                        echo '<a href="?page=form-pendaftaran" class="btn btn-warning">REGISTRASI</a> pendaftaran ditutup pada <strong>'.$postdate.'</strong>';
                     echo '</div>';
+                }else{
+                    $qry_setup = "SELECT setup_date_pre, setup_date_post FROM ppdb_setup";
+                    if( $database->num_rows( $qry_setup ) > 0 )
+                    {
+                        list( $datepre, $datepost ) = $database->get_row( $qry_setup );
+                        $predate = tgl_indo($datepre);
+                        $postdate = tgl_indo($datepost);
+                        echo '<div class="alert alert-success alert-dismissible" role="alert">';
+                            echo 'Pendaftaran sekolah hanya dapat dilakukan pada <strong>'.$predate.'</strong> ';
+                            echo 'sampai dengan <strong>'.$postdate.'</strong>';
+                        echo '</div>';
+                    }
                 }
             ?>
             
@@ -52,6 +66,60 @@
         </div>	
     </section>
     <!-- End intro Area -->
+    
+    <!-- Start services Area -->
+    <section class="counter-area section-gap relative">
+        <div class="overlay overlay-bg"></div>
+        <div class="container">
+            <div class="row justify-content-center align-items-center">
+                <div class="col-lg-3 col-md-6">
+                    <div class="single-counter">
+                        <div class="circle">
+                          <div class="inner"></div>
+                        </div>
+                            <h5><i class="fa fa-user-plus"></i></h5>
+                        <p>
+                            <a href="#" type="button" class="btn btn-primary">Pra Registrasi</a>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="single-counter">
+                        <div class="circle">
+                          <div class="inner"></div>
+                        </div>
+                            <h5><i class="fa fa-wpforms"></i></h5>
+                        <p>
+                            <a href="#" type="button" class="btn btn-primary">Isi Form Registrasi</a>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="single-counter">
+                        <div class="circle">
+                          <div class="inner"></div>
+                        </div>
+                            <h5><i class="fa fa-print"></i></h5>
+                        <p>
+                            <a href="#" type="button" class="btn btn-primary">Cetak Form Registrasi</a>
+                        </p>
+                    </div>
+                </div>	
+                <div class="col-lg-3 col-md-6">
+                    <div class="single-counter">
+                        <div class="circle">
+                          <div class="inner"></div>
+                        </div>
+                            <h5><i class="fa fa-list-alt"></i></h5>
+                        <p>
+                            <a href="#" type="button" class="btn btn-primary">Hasil Seleksi</a>
+                        </p>
+                    </div>
+                </div>																				
+            </div>
+        </div>	
+    </section>
+    <!-- End services Area -->
 
     <!-- Start gallery Area -->
     <section class="gallery-area section-gap" id="gallery">

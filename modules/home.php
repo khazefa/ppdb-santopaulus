@@ -29,10 +29,10 @@
                 {
                     list( $datepost ) = $database->get_row( $query );
                     $postdate = tgl_indo($datepost);
-                    echo '<div class="alert alert-success alert-dismissible" role="alert">';
+                    echo '<div class="alert alert-warning alert-dismissible" role="alert">';
 //                        echo '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>';
                         echo 'Pendaftaran sekolah telah dibuka! silahkan melakukan ';
-                        echo '<a href="?page=form-pendaftaran" class="btn btn-warning">REGISTRASI</a> pendaftaran ditutup pada <strong>'.$postdate.'</strong>';
+                        echo '<a href="?page=registrasi" class="text-success">REGISTRASI</a> pendaftaran ditutup pada <strong>'.$postdate.'</strong>';
                     echo '</div>';
                 }else{
                     $qry_setup = "SELECT setup_date_pre, setup_date_post FROM ppdb_setup";
@@ -41,9 +41,9 @@
                         list( $datepre, $datepost ) = $database->get_row( $qry_setup );
                         $predate = tgl_indo($datepre);
                         $postdate = tgl_indo($datepost);
-                        echo '<div class="alert alert-success alert-dismissible" role="alert">';
-                            echo 'Pendaftaran sekolah hanya dapat dilakukan pada <strong>'.$predate.'</strong> ';
-                            echo 'sampai dengan <strong>'.$postdate.'</strong>';
+                        echo '<div class="alert alert-warning alert-dismissible" role="alert">';
+                            echo 'Pendaftaran sekolah dibuka kembali pada tanggal <strong>'.$predate.'</strong> ';
+                            echo 'sampai dengan tanggal <strong>'.$postdate.'</strong>';
                         echo '</div>';
                     }
                 }
@@ -79,7 +79,7 @@
                         </div>
                             <h5><i class="fa fa-user-plus"></i></h5>
                         <p>
-                            <a href="#" type="button" class="btn btn-primary">Pra Registrasi</a>
+                            <a href="?page=enroll" type="button" class="btn btn-warning">Pra Registrasi</a>
                         </p>
                     </div>
                 </div>
@@ -90,7 +90,7 @@
                         </div>
                             <h5><i class="fa fa-wpforms"></i></h5>
                         <p>
-                            <a href="#" type="button" class="btn btn-primary">Isi Form Registrasi</a>
+                            <a href="?page=registrasi" type="button" class="btn btn-warning">Isi Form Registrasi</a>
                         </p>
                     </div>
                 </div>
@@ -101,7 +101,7 @@
                         </div>
                             <h5><i class="fa fa-print"></i></h5>
                         <p>
-                            <a href="#" type="button" class="btn btn-primary">Cetak Form Registrasi</a>
+                            <a href="?page=download-formulir" type="button" class="btn btn-warning">Cetak Form Registrasi</a>
                         </p>
                     </div>
                 </div>	
@@ -112,7 +112,7 @@
                         </div>
                             <h5><i class="fa fa-list-alt"></i></h5>
                         <p>
-                            <a href="#" type="button" class="btn btn-primary">Hasil Seleksi</a>
+                            <a href="?page=hasil-seleksi" type="button" class="btn btn-warning">Hasil Seleksi</a>
                         </p>
                     </div>
                 </div>																				

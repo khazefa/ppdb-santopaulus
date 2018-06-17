@@ -28,7 +28,7 @@ if (empty($_SESSION['isSession'])){
             }
         }
     }else{
-        $url = $baseurl.'?page=form-pendaftaran';
+        $url = $baseurl.'?page=registrasi';
         echo "<script type='text/javascript'>alert('Terjadi kesalahan pada pendaftaran anda, harap ulangi pendaftaran kembali.');window.location.href = '".$url."';</script>";
         exit();
     }

@@ -98,7 +98,7 @@
                             echo '<li><a href="?page=profil-akun">Profil Pendaftar</a></li>';
                             echo '<li><a href="?page=upload-berkas">Upload Berkas</a></li>';
                         }else{
-                            echo '<li><a href="?page=form-pendaftaran">Registrasi</a></li>';
+                            echo '<li><a href="?page=registrasi">Registrasi</a></li>';
                         }
                     ?>
                     <li><div class="dropdown-divider"></div></li>

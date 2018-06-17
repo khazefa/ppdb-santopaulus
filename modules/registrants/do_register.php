@@ -62,8 +62,6 @@ if (empty($_SESSION['isSession'])){
             'cs_nisn' => $fnisn,
             'reg_status' => 1
         );
-        
-//        var_dump($arrValue);exit();
 
         $add_query = $database->insert( 'calon_siswa', $arrValue );
         if( $add_query )

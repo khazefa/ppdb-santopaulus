@@ -107,7 +107,7 @@ if (empty($_SESSION['isSession'])){
                 . "c.cs_tgl_lahir, c.cs_jkel, c.cs_agama, c.cs_no_tlp, c.cs_alamat_lengkap, "
                 . "c.cs_nama_ayah, c.cs_nama_ibu, c.cs_nama_wali, c.cs_asal_sekolah, c.cs_email "
                 . "FROM calon_siswa AS c INNER JOIN registrasi AS r ON c.cs_nisn = r.cs_nisn "
-                . "WHERE r.reg_id = '$fnoreg' AND r.reg_status = 1";
+                . "WHERE r.reg_id = '$fnoreg'";
 
     if( $database->num_rows( $query ) > 0 )
     {

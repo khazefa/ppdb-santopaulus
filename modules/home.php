@@ -99,9 +99,9 @@
                         <div class="circle">
                           <div class="inner"></div>
                         </div>
-                            <h5><i class="fa fa-print"></i></h5>
+                            <h5><i class="fa fa-upload"></i></h5>
                         <p>
-                            <a href="?page=download-formulir" type="button" class="btn btn-warning">Cetak Form Registrasi</a>
+                            <a href="?page=upload-berkas" type="button" class="btn btn-warning">Upload Berkas</a>
                         </p>
                     </div>
                 </div>	

@@ -61,6 +61,7 @@
             <ul class="nav-menu">
               <li class="menu-active"><a href="<?php echo $baseurl;?>">Beranda</a></li>
               <li><a href="?page=static&q=tentang-kami">Tentang Kami</a></li>
+              <li><a href="?page=agenda">Agenda Sekolah</a></li>
               <li><a href="?page=pengumuman">Pengumuman</a></li>
               <?php
               if ($_SESSION['isSession']){

@@ -9,7 +9,7 @@ if (empty($_SESSION['isSession'])){
     $sessID = $_SESSION['vcUid'];
     if(!empty($sessID)){
         $url = $baseurl.'?page=upload-berkas';
-        echo "<script type='text/javascript'>window.location.href = '".$url."';</script>";
+        echo "<script type='text/javascript'>alert('Anda sudah pernah mengisi formulir pendaftaran, harap upload berkas pendaftaran.');window.location.href = '".$url."';</script>";
         exit();
     }else{
         $pagetitle = "Request Formulir Pendaftaran";

@@ -13,6 +13,8 @@
     if (empty($_SESSION['isSession'])){
         $page_files = array(
             'static'=>'modules/pages/page_content.php',
+            'agenda'=>'modules/agenda/page_agenda.php',
+            'detail-agenda'=>'modules/agenda/page_detail.php',
             'pengumuman'=>'modules/pengumuman/page_pengumuman.php',
             'kontak-kami'=>'modules/contact/vform.php',
             'do_contact'=>'modules/contact/do_vform.php',
@@ -37,6 +39,8 @@
     }else{
         $page_files = array( 
             'static'=>'modules/pages/page_content.php',
+            'agenda'=>'modules/agenda/page_agenda.php',
+            'detail-agenda'=>'modules/agenda/page_detail.php',
             'pengumuman'=>'modules/pengumuman/page_pengumuman.php',
             'kontak-kami'=>'modules/contact/vform.php',
             'do_contact'=>'modules/contact/do_vform.php',

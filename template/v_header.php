@@ -68,10 +68,10 @@
                   
               }else{
               ?>
-              <li class="menu-has-children"><a href="#">Pendaftaran</a>
+              <li class="menu-has-children"><a href="#">Registrasi</a>
                 <ul>
-                  <li><a href="?page=static&q=syarat-pendaftaran">Syarat Pendaftaran</a></li>
-                  <!--<li><a href="?page=form-pendaftaran">Formulir Pendaftaran</a></li>-->
+                  <li><a href="?page=static&q=syarat-pendaftaran">Syarat Registrasi</a></li>
+                  <!--<li><a href="?page=form-pendaftaran">Formulir Registrasi</a></li>-->
                 </ul>
               </li>
               <?php

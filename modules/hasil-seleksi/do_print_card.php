@@ -14,10 +14,10 @@ if (empty($_SESSION['isSession'])){
     
     $furl = isset($_POST["furl"]) ? filter_var($_POST['furl'], FILTER_SANITIZE_STRING) : null;
     
-    $fnoreg = isset($_POST["fnoreg"]) ? filter_var($_POST['fnoreg'], FILTER_SANITIZE_STRING) : null;
+    $key = isset($_POST["fkey"]) ? filter_var($_POST['fkey'], FILTER_SANITIZE_STRING) : null;
     
-    $orientation = "P";
-    $paper_size = "A4";
+    $orientation = "L";
+    $paper_size = "A5";
     $width = 0;
     $height = 0;
 
@@ -86,7 +86,7 @@ if (empty($_SESSION['isSession'])){
     // mencetak string 
     $pdf->Cell(190,7,''.WEB_TITLE,0,1,'C');
     $pdf->SetFont('Arial','B',12);
-    $pdf->Cell(190,7,'Bukti Pendaftaran Calon Siswa',0,1,'C');
+    $pdf->Cell(190,7,'Kartu Ujian '.$key,0,1,'C');
 
     // Garis atas untuk header
     $pdf->Line(10, 30, $width-10, 30);
@@ -107,7 +107,7 @@ if (empty($_SESSION['isSession'])){
                 . "c.cs_tgl_lahir, c.cs_jkel, c.cs_agama, c.cs_no_tlp, c.cs_alamat_lengkap, "
                 . "c.cs_nama_ayah, c.cs_nama_ibu, c.cs_nama_wali, c.cs_asal_sekolah, c.cs_email "
                 . "FROM calon_siswa AS c INNER JOIN registrasi AS r ON c.cs_nisn = r.cs_nisn "
-                . "WHERE r.reg_id = '$fnoreg'";
+                . "WHERE r.reg_id = '$key'";
 
     if( $database->num_rows( $query ) > 0 )
     {
@@ -128,66 +128,38 @@ if (empty($_SESSION['isSession'])){
     $pdf->Cell(6,0.5,'                           : '.$nisn,0,1, 'L');
 
     $pdf->setFont('Arial','B',11);
-    $pdf->Cell(6,10,'NIS',0,0,'L');
+    $pdf->Cell(6,10,'Nama Lengkap',0,0,'L');
     $pdf->setFont('Arial','',11);
-    $pdf->Cell(6,10,'                           : '.$nis,0,1, 'L');
-
-    $pdf->setFont('Arial','B',11);
-    $pdf->Cell(6,0.5,'Nama Lengkap',0,0,'L');
-    $pdf->setFont('Arial','',11);
-    $pdf->Cell(6,0.5,'                           : '.$fullname,0,1, 'L');
-
-    $pdf->setFont('Arial','B',11);
-    $pdf->Cell(6,10,'Tempat, Tgl Lahir',0,0,'L');
-    $pdf->setFont('Arial','',11);
-    $pdf->Cell(6,10,'                           : '.$tempat.', '.$tgllhir,0,1, 'L');
+    $pdf->Cell(6,10,'                           : '.$fullname,0,1, 'L');
 
     $pdf->setFont('Arial','B',11);
     $pdf->Cell(6,0.5,'Jenis Kelamin',0,0,'L');
     $pdf->setFont('Arial','',11);
     $pdf->Cell(6,0.5,'                           : '.$gender,0,1, 'L');
-
+    
     $pdf->setFont('Arial','B',11);
-    $pdf->Cell(6,10,'Agama',0,0,'L');
+    $pdf->Cell(6,10,'Lokasi Ujian',0,0,'L');
     $pdf->setFont('Arial','',11);
-    $pdf->Cell(6,10,'                           : '.$agama,0,1, 'L');
+    $pdf->Cell(6,10,'                           : SMP Katolik Santo Paulus ',0,1, 'L');
+    
+    // Garis atas untuk header
+    $pdf->Line(10, 70, $width-10, 70);
+    // Memberikan space kebawah agar tidak terlalu rapat
+    $pdf->Cell(10,10,'',0,1);
+ 
+    $pdf->setFont('Arial','B',8);
+    $pdf->Cell(6,5,'Informasi Biaya',0,1,'L');
+    
+    $pdf->setFont('Arial','',8);
+    $pdf->Cell(6,10,'Uang SPP per bulan: Rp. 750.000,-',0,1,'L');
 
-    $pdf->setFont('Arial','B',11);
-    $pdf->Cell(6,0.5,'No Telepon',0,0,'L');
-    $pdf->setFont('Arial','',11);
-    $pdf->Cell(6,0.5,'                           : '.$notlp,0,1, 'L');
+    $pdf->setFont('Arial','',8);
+    $pdf->Cell(6,0.5,'Uang kegiatan per bulan: Rp. 300.000,-',0,1,'L');
+    
+    $pdf->setFont('Arial','',8);
+    $pdf->Cell(6,10,'Uang pangkal: Rp. 13.000.000,-',0,1,'L');
 
-    $pdf->setFont('Arial','B',11);
-    $pdf->Cell(6,10,'Alamat Lengkap',0,0,'L');
-    $pdf->setFont('Arial','',11);
-    $pdf->Cell(6,10,'                           : '.nl2br($alamat),0,1, 'L');
-
-    $pdf->setFont('Arial','B',11);
-    $pdf->Cell(6,0.5,'Nama Ayah',0,0,'L');
-    $pdf->setFont('Arial','',11);
-    $pdf->Cell(6,0.5,'                           : '.$ayah,0,1, 'L');
-
-    $pdf->setFont('Arial','B',11);
-    $pdf->Cell(6,10,'Nama Ibu',0,0,'L');
-    $pdf->setFont('Arial','',11);
-    $pdf->Cell(6,10,'                           : '.$ibu,0,1, 'L');
-
-    $pdf->setFont('Arial','B',11);
-    $pdf->Cell(6,0.5,'Nama Wali',0,0,'L');
-    $pdf->setFont('Arial','',11);
-    $pdf->Cell(6,0.5,'                           : '.$wali,0,1, 'L');
-
-    $pdf->setFont('Arial','B',11);
-    $pdf->Cell(6,10,'Asal Sekolah',0,0,'L');
-    $pdf->setFont('Arial','',11);
-    $pdf->Cell(6,10,'                           : '.$sekolah,0,1, 'L');
-
-    $pdf->setFont('Arial','B',11);
-    $pdf->Cell(6,0.5,'Alamat Email',0,0,'L');
-    $pdf->setFont('Arial','',11);
-    $pdf->Cell(6,0.5,'                           : '.$email,0,1, 'L');
-
-    $title = 'Bukti Pendaftaran '.$fnoreg;
+    $title = 'Kartu Ujian '.$key;
     $pdf->SetTitle($title);
     $pdf->Output('I', $title.'.pdf');
 }

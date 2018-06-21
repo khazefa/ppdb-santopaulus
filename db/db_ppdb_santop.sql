@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jun 08, 2018 at 03:34 PM
+-- Generation Time: Jun 21, 2018 at 02:22 AM
 -- Server version: 5.7.19
 -- PHP Version: 7.1.18
 
@@ -46,7 +46,8 @@ CREATE TABLE `agenda` (
 
 INSERT INTO `agenda` (`ag_id`, `ag_tgl_posting`, `ag_tgl_mulai`, `ag_tgl_selesai`, `ag_jam`, `ag_judul`, `ag_konten`, `ag_tipe`, `ag_publish`) VALUES
 (1, '2018-05-10', '2018-05-31', '2018-05-31', '09:00 s/d 11:00', 'Test Judul Agenda', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'agenda', 'Y'),
-(2, '2018-05-10', '2018-05-31', '2018-05-31', '09:00 s/d 11:00', 'Test Judul Pengumuman', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'pengumuman', 'Y');
+(2, '2018-05-10', '2018-05-31', '2018-05-31', '09:00 s/d 11:00', 'Test Judul Pengumuman', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'pengumuman', 'Y'),
+(3, '2018-05-10', '2018-05-31', '2018-05-31', '09:00 s/d 11:00', 'Test Judul Agenda 1', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'agenda', 'Y');
 
 -- --------------------------------------------------------
 
@@ -185,7 +186,7 @@ CREATE TABLE `ppdb_setup` (
 --
 
 INSERT INTO `ppdb_setup` (`setup_id`, `setup_date_pre`, `setup_date_post`, `setup_quota`) VALUES
-(1, '2018-05-01', '2018-05-31', 1000);
+(1, '2018-06-01', '2018-06-30', 1000);
 
 -- --------------------------------------------------------
 
@@ -205,20 +206,7 @@ CREATE TABLE `registrasi` (
 --
 
 INSERT INTO `registrasi` (`reg_id`, `reg_date`, `cs_nisn`, `reg_status`) VALUES
-('R1806001', '2018-06-02', '1234567890', 1);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `seleksi_penerimaan`
---
-
-CREATE TABLE `seleksi_penerimaan` (
-  `sp_id` int(11) NOT NULL,
-  `reg_id` varchar(8) NOT NULL,
-  `nilai_tes` int(11) NOT NULL,
-  `sp_status` enum('V','X') NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+('R1806001', '2018-06-02', '1234567890', 3);
 
 -- --------------------------------------------------------
 
@@ -264,7 +252,9 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`user_id`, `user_keyname`, `user_keypass`, `user_fullname`, `user_email`, `role_id`, `user_status`) VALUES
 (1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'Administrator', 'admin@domain.com', 1, 1),
-(3, 'ronisiaha@gmail.com', 'd78b154c99fe7f06ebc02ebd63d1c87c', 'Roni Siahaan', 'ronisiaha@gmail.com', 3, 1);
+(3, 'ronisiaha@gmail.com', 'd78b154c99fe7f06ebc02ebd63d1c87c', 'Roni Siahaan', 'ronisiaha@gmail.com', 3, 1),
+(4, 'joko@gmail.com', '9ba0009aa81e794e628a04b51eaf7d7f', 'Joko Alehandro', 'joko@gmail.com', 3, 1),
+(5, 'stevan@gmail.com', '1dbf3031096d822a782d84108724dea9', 'Stevan Oktavianus', 'stevan@gmail.com', 3, 1);
 
 -- --------------------------------------------------------
 
@@ -340,12 +330,6 @@ ALTER TABLE `registrasi`
   ADD PRIMARY KEY (`reg_id`);
 
 --
--- Indexes for table `seleksi_penerimaan`
---
-ALTER TABLE `seleksi_penerimaan`
-  ADD PRIMARY KEY (`sp_id`);
-
---
 -- Indexes for table `site_pages`
 --
 ALTER TABLE `site_pages`
@@ -371,7 +355,7 @@ ALTER TABLE `users_role`
 -- AUTO_INCREMENT for table `agenda`
 --
 ALTER TABLE `agenda`
-  MODIFY `ag_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ag_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `album_foto`
@@ -410,12 +394,6 @@ ALTER TABLE `ppdb_setup`
   MODIFY `setup_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `seleksi_penerimaan`
---
-ALTER TABLE `seleksi_penerimaan`
-  MODIFY `sp_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `site_pages`
 --
 ALTER TABLE `site_pages`
@@ -425,7 +403,7 @@ ALTER TABLE `site_pages`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `users_role`

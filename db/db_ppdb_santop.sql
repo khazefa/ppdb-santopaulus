@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jul 01, 2018 at 01:12 PM
+-- Generation Time: Jul 10, 2018 at 04:45 PM
 -- Server version: 5.7.19
 -- PHP Version: 7.1.18
 
@@ -132,16 +132,15 @@ CREATE TABLE `calon_siswa` (
   `cs_nama_ibu` varchar(100) NOT NULL,
   `cs_nama_wali` varchar(100) NOT NULL,
   `cs_asal_sekolah` varchar(100) NOT NULL,
-  `cs_email` varchar(100) NOT NULL,
-  `berkas_id` int(10) NOT NULL DEFAULT '0'
+  `cs_email` varchar(100) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `calon_siswa`
 --
 
-INSERT INTO `calon_siswa` (`cs_id`, `cs_nisn`, `cs_nis`, `cs_nama_lengkap`, `cs_tmpt_lahir`, `cs_tgl_lahir`, `cs_jkel`, `cs_agama`, `cs_no_tlp`, `cs_alamat_lengkap`, `cs_nama_ayah`, `cs_nama_ibu`, `cs_nama_wali`, `cs_asal_sekolah`, `cs_email`, `berkas_id`) VALUES
-(1, '1234567890', '123456789012', 'Roni Siahaan', 'Jakarta', '2006-05-05', 'L', 'Katholik', '081345676755', 'Jl. KH Agus Salim 16, Sabang, Menteng Jakarta Pusat', 'Toni Jefferson', 'Shinta Bashor', '', 'SDN Tebu Besar', 'ronisiaha@gmail.com', 0);
+INSERT INTO `calon_siswa` (`cs_id`, `cs_nisn`, `cs_nis`, `cs_nama_lengkap`, `cs_tmpt_lahir`, `cs_tgl_lahir`, `cs_jkel`, `cs_agama`, `cs_no_tlp`, `cs_alamat_lengkap`, `cs_nama_ayah`, `cs_nama_ibu`, `cs_nama_wali`, `cs_asal_sekolah`, `cs_email`) VALUES
+(1, '1234567890', '123456789012', 'Roni Siahaan', 'Jakarta', '2006-05-05', 'L', 'Katholik', '081345676755', 'Jl. KH Agus Salim 16, Sabang, Menteng Jakarta Pusat', 'Toni Jefferson', 'Shinta Bashor', '', 'SDN Tebu Besar', 'ronisiaha@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -206,7 +205,7 @@ CREATE TABLE `registrasi` (
 --
 
 INSERT INTO `registrasi` (`reg_id`, `reg_date`, `cs_nisn`, `reg_status`) VALUES
-('R1806001', '2018-06-02', '1234567890', 3);
+('R1806001', '2018-06-02', '1234567890', 4);
 
 -- --------------------------------------------------------
 

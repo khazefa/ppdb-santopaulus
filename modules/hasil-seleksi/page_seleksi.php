@@ -36,7 +36,7 @@
             <?php
                 $query = "SELECT r.reg_id, r.reg_status, c.* "
                         . "FROM registrasi AS r INNER JOIN calon_siswa AS c ON r.cs_nisn = c.cs_nisn "
-                        . "WHERE r.reg_status IN(3,4) ORDER BY reg_id ASC";
+                        . "WHERE r.reg_status <> 1 ORDER BY reg_id ASC";
                 $results = $database->get_results( $query );
                 $no = 1;
                 foreach( $results as $row )
@@ -51,8 +51,15 @@
                             $html = '-';
                         break;
                         case 2:
-                            $status = strtoupper("proses");
-                            $html = '-';
+                            $status = strtoupper("berkas terverifikasi");
+                            if (empty($_SESSION['isSession'])){
+                                $html = '<a href="?page=enroll">Please Login</a>';
+                            }else{
+                                $html = '<form method="POST" action="modules/hasil-seleksi/do_print_exam.php" target="_BLANK">';
+                                $html .= '<input type="hidden" name="fkey" value="'.$key.'" readonly>';
+                                $html .= '<button type="submit" class="btn btn-sm btn-success"><i class="fa fa-print"></i> Kartu Ujian</button>';
+                                $html .= '</form>';
+                            }
                         break;
                         case 3:
                             $status = strtoupper("lulus");
@@ -61,9 +68,8 @@
                             }else{
                                 $html = '<form method="POST" action="modules/hasil-seleksi/do_print_card.php" target="_BLANK">';
                                 $html .= '<input type="hidden" name="fkey" value="'.$key.'" readonly>';
-                                $html .= '<button type="submit" class="btn btn-sm btn-success"><i class="fa fa-print"></i> Kartu Ujian</button>';
+                                $html .= '<button type="submit" class="btn btn-sm btn-success"><i class="fa fa-print"></i> Bukti Lulus</button>';
                                 $html .= '</form>';
-    //                            $html = '<a href="?page=cetak-kartu-ujian&key='.$key.'" target="_blank"><i class="fa fa-print"></i> Kartu Ujian</a>';
                             }
                         break;
                         case 4:

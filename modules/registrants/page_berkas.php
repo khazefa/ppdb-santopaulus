@@ -8,13 +8,10 @@ if (empty($_SESSION['isSession'])){
 }else{
     $sessID = $_SESSION['vcUid'];
     if(!empty($sessID)){
-        $query = "SELECT berkas_id FROM calon_siswa WHERE cs_nisn = '$sessID' ";
+        $query = "SELECT cs_nisn FROM berkas_docs WHERE cs_nisn = '$sessID' ";
         if( $database->num_rows( $query ) > 0 )
         {
-            list( $is_berkas ) = $database->get_row( $query );
-        }
-        
-        if($is_berkas > 0){
+//            list( $is_berkas ) = $database->get_row( $query );
             $url = $baseurl;
             echo "<script type='text/javascript'>alert('Anda sudah pernah mengupload berkas pendaftaran.');window.location.href = '".$url."';</script>";
             exit();

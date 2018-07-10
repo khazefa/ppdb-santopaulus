@@ -86,7 +86,7 @@ if (empty($_SESSION['isSession'])){
     // mencetak string 
     $pdf->Cell(190,7,''.WEB_TITLE,0,1,'C');
     $pdf->SetFont('Arial','B',12);
-    $pdf->Cell(190,7,'Bukti Penerimaan Peserta Didik',0,1,'C');
+    $pdf->Cell(190,7,'Kartu Ujian '.$key,0,1,'C');
 
     // Garis atas untuk header
     $pdf->Line(10, 30, $width-10, 30);
@@ -115,6 +115,8 @@ if (empty($_SESSION['isSession'])){
                 $notlp, $alamat, $ayah, $ibu, $wali, $sekolah, $email ) = $database->get_row( $query );
         $gender = $jkel == "L" ? "Laki-Laki" : "Perempuan";
         $tgllhir = tgl_indo($tgl);
+        $examdate = date('Y-m-d', mktime(0, 0, 0, date('m'), date('d') + 2, date('Y')));
+        $tglujian = tgl_indo($examdate);
     }
     
     $pdf->setFont('Arial','B',11);
@@ -137,8 +139,15 @@ if (empty($_SESSION['isSession'])){
     $pdf->setFont('Arial','',11);
     $pdf->Cell(6,0.5,'                           : '.$gender,0,1, 'L');
     
-    $pdf->setFont('Arial','BI',24);
-    $pdf->Cell(($width/2),20,'LULUS',0,1,'R');
+    $pdf->setFont('Arial','B',11);
+    $pdf->Cell(6,10,'Lokasi Ujian',0,0,'L');
+    $pdf->setFont('Arial','',11);
+    $pdf->Cell(6,10,'                           : SMP Katolik Santo Paulus ',0,1, 'L');
+    
+    $pdf->setFont('Arial','B',11);
+    $pdf->Cell(6,0.5,'Tanggal Ujian',0,0,'L');
+    $pdf->setFont('Arial','',11);
+    $pdf->Cell(6,0.5,'                           : '.$tglujian,0,1, 'L');
     
     // Garis atas untuk header
     $pdf->Line(10, 70, $width-10, 70);
@@ -146,19 +155,10 @@ if (empty($_SESSION['isSession'])){
     $pdf->Cell(10,10,'',0,1);
  
     $pdf->setFont('Arial','B',8);
-    $pdf->Cell(6,5,'*Informasi Biaya',0,1,'L');
-    
-    $pdf->setFont('Arial','',8);
-    $pdf->Cell(6,10,'Uang SPP per bulan: Rp. 750.000,-',0,1,'L');
+    $pdf->Cell(6,5,'*Harap membawa kartu ujian ini sebagai identitas ujian anda.',0,1,'L');
 
-    $pdf->setFont('Arial','',8);
-    $pdf->Cell(6,0.5,'Uang kegiatan per bulan: Rp. 300.000,-',0,1,'L');
-    
-    $pdf->setFont('Arial','',8);
-    $pdf->Cell(6,10,'Uang pangkal: Rp. 13.000.000,-',0,1,'L');
-
-    $title = 'SKL '.$key;
-    $pdf->SetTitle("Surat Keterangan Lulus");
+    $title = 'Kartu Ujian '.$key;
+    $pdf->SetTitle($title);
     $pdf->Output('I', $title.'.pdf');
 }
 ?>
